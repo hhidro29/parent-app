@@ -120,9 +120,20 @@ export default function DiscoveryPage() {
                     {/* Program List */}
                     <div className="flex flex-col gap-[16px] mt-[10px]">
                         {PROGRAMS.map(program => (
-                            <div key={program.id} className={`${program.color} rounded-[12px] p-0 relative overflow-hidden flex flex-row h-[160px] cursor-pointer`}>
-                                {/* Content */}
-                                <div className="relative z-10 w-[60%] flex flex-col justify-center pl-[20px] pr-[10px] py-[16px]">
+                            <div key={program.id} className={`rounded-[12px] p-0 relative overflow-hidden flex flex-row h-[160px] cursor-pointer shadow-sm ${program.color}}`}>
+                                {/* Background Image - covering full card but aligned right */}
+                                <div className="absolute inset-0 z-0">
+                                    <Image
+                                        src={program.image}
+                                        alt={program.title}
+                                        fill
+                                        className="object-cover object-right"
+                                        priority={true}
+                                    />
+                                </div>
+
+                                {/* Content - positioned left with some gradient/overlay for readability if needed */}
+                                <div className="relative z-10 w-[65%] flex flex-col justify-center pl-[20px] pr-[10px] py-[16px] bg-gradient-to-r from-white/90 via-white/50 to-transparent">
                                     <h3 className="font-['Inter'] font-bold text-[16px] text-[#2C313A] leading-[1.2] mb-[8px]">{program.title}</h3>
                                     <p className="font-['Inter'] font-normal text-[12px] text-[#2C313A] leading-[1.4] mb-[12px] line-clamp-3">{program.description}</p>
                                     <div>
@@ -130,16 +141,6 @@ export default function DiscoveryPage() {
                                             {program.cta}
                                         </button>
                                     </div>
-                                </div>
-
-                                {/* Image/Illustration */}
-                                <div className="absolute right-0 top-0 h-full w-[50%]">
-                                    <Image
-                                        src={program.image}
-                                        alt={program.title}
-                                        fill
-                                        className="object-cover object-center"
-                                    />
                                 </div>
                             </div>
                         ))}
