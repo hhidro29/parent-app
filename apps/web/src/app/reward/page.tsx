@@ -88,7 +88,7 @@ export default function RewardPage() {
 
                         {/* Bottom Section: Progress */}
                         {/* Measurement: Height 110px */}
-                        <div className="bg-[#6A7181]/40 h-[110px] p-[12px] flex flex-col justify-between relative">
+                        <div className="h-[110px] p-[12px] flex flex-col justify-between relative">
                             {/* Points Text */}
                             <div className="flex justify-between items-end text-white mb-[8px]">
                                 <span className="text-[14px]">1.000 Point</span>
