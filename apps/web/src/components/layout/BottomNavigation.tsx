@@ -70,7 +70,7 @@ export default function BottomNavigation() {
     const isChat = pathname.startsWith("/chat");
 
     // Don't show navigation on full-screen pages
-    const hiddenPaths = ["/payment", "/my-child", "/reward", "/auth", "/discovery"];
+    const hiddenPaths = ["/payment", "/my-child", "/reward", "/auth", "/discovery", "/learning/report"];
     const shouldHide = hiddenPaths.some(path => pathname.startsWith(path));
 
     if (shouldHide) return null;

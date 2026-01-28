@@ -231,7 +231,7 @@ export default function LearningPage() {
                         <div className="flex flex-col gap-[12px]">
                             <div className="flex items-center justify-between">
                                 <h2 className="font-['Inter'] font-bold text-[16px] text-[#2C313A]">Class Report</h2>
-                                <Link href="#" className="font-['Inter'] font-bold text-[14px] text-[#13939E]">Lihat Semua</Link>
+                                <Link href="/learning/report" className="font-['Inter'] font-bold text-[14px] text-[#13939E]">Lihat Semua</Link>
                             </div>
 
                             <div className="flex gap-[12px] overflow-x-auto pb-[4px] -mx-[12px] px-[12px] scrollbar-hide">
@@ -249,9 +249,12 @@ export default function LearningPage() {
                                             <div className={`px-[12px] py-[8px] rounded-[12px] flex items-center justify-center ${report.statusColor}`}>
                                                 <span className="font-['Inter'] font-bold text-[12px] leading-[18px]">{report.status}</span>
                                             </div>
-                                            <button className="bg-[#F26D0F] text-white font-bold text-[12px] px-[12px] h-[28px] rounded-full active:scale-95 transition-transform">
+                                            <Link
+                                                href="/learning/report"
+                                                className="bg-[#F26D0F] text-white font-bold text-[12px] px-[12px] h-[28px] rounded-full active:scale-95 transition-transform flex items-center justify-center"
+                                            >
                                                 See Report
-                                            </button>
+                                            </Link>
                                         </div>
                                     </div>
                                 ))}

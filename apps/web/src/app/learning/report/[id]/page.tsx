@@ -1,53 +1,39 @@
 "use client";
 
-import { useParams, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 const svgPaths = {
     back: "M15.41 7.41L14 6L8 12L14 18L15.41 16.59L10.83 12L15.41 7.41Z",
 };
 
-const reportData = {
-    title: "Cooking verbs and kitchen terms",
-    unit: "Unit A · Language Introduction",
-    date: "Monday, 25 January 2026",
-    teacher: "Ms. Sarah",
-    duration: "60 minutes",
-    objectives: [
-        "Learn kitchen-related vocabulary",
-        "Understand common cooking verbs",
-        "Practice using vocabulary in sentences",
-    ],
-    activities: [
-        { name: "Warm-up Discussion", description: "Students shared their favorite foods", duration: "10 min" },
-        { name: "Vocabulary Introduction", description: "New vocabulary with visual aids", duration: "15 min" },
-        { name: "Interactive Game", description: "Kitchen vocabulary matching game", duration: "15 min" },
-        { name: "Role Play", description: "Pretend cooking show with new verbs", duration: "15 min" },
-        { name: "Wrap-up", description: "Review and homework explanation", duration: "5 min" },
-    ],
-    teacherNotes: "Liam showed great enthusiasm today! He particularly enjoyed the role play activity and was able to use all new vocabulary correctly. Keep practicing at home!",
-    skills: [
-        { name: "Vocabulary", score: 90 },
-        { name: "Speaking", score: 85 },
-        { name: "Listening", score: 88 },
-        { name: "Participation", score: 95 },
-    ],
-};
-
 export default function ClassReportDetailPage() {
     const router = useRouter();
-    const params = useParams();
+
+    const days = [
+        { day: "S", date: "16" },
+        { day: "M", date: "17" },
+        { day: "T", date: "18" },
+        { day: "W", date: "19" },
+        { day: "T", date: "20", active: true },
+        { day: "F", date: "21" },
+        { day: "S", date: "22" },
+    ];
 
     return (
-        <div className="flex flex-col min-h-full w-full bg-[#f7f9fd]">
-            {/* Header */}
+        <div className="flex flex-col min-h-full w-full bg-[#f7f9fd] relative">
+            {/* Header Background - Fixed Height 118px */}
             <div
-                className="relative overflow-hidden rounded-bl-[28px] w-full"
+                className="absolute top-0 w-full h-[118px] z-0"
                 style={{
-                    backgroundImage: "linear-gradient(90deg, rgba(4, 35, 81, 0.14) 0%, rgba(4, 35, 81, 0.14) 100%), linear-gradient(161.996deg, rgb(123, 215, 251) 0%, rgb(52, 206, 158) 100%)",
+                    backgroundImage: "linear-gradient(169.875deg, #2B2A72 0%, #FF4546 100%)",
                 }}
-            >
-                <div className="bg-[#1fb0c3] h-[24px] w-full" />
-                <div className="flex items-center p-[12px] w-full">
+            />
+
+            {/* Content Wrapper */}
+            <div className="relative z-10 flex flex-col w-full">
+                {/* Top Bar - 18px top padding, 12px bottom gap */}
+                <div className="flex items-center px-[12px] pt-[18px] pb-[12px] w-full">
                     <button
                         onClick={() => router.back()}
                         className="bg-white flex items-center justify-center p-[4px] rounded-full shrink-0 w-[34px] shadow-[0px_0px_0px_1px_#cfd3db_inset]"
@@ -57,101 +43,148 @@ export default function ClassReportDetailPage() {
                         </svg>
                     </button>
                     <p className="flex-1 font-['Inter'] font-bold text-[16px] leading-[20px] text-center text-white">
-                        Session Report
+                        Class Report Detail
                     </p>
                     <div className="w-[34px]" />
                 </div>
-            </div>
 
-            {/* Content */}
-            <div className="flex flex-col gap-[12px] p-[12px]">
-                {/* Main Info Card */}
-                <div className="bg-white rounded-[12px] p-[16px] shadow-[0px_4px_8px_0px_rgba(0,0,0,0.08)]">
-                    <p className="font-['Inter'] font-normal text-[11px] text-[#5e677b] mb-[4px]">{reportData.unit}</p>
-                    <p className="font-['Inter'] font-bold text-[18px] text-[#2c313a] mb-[12px]">{reportData.title}</p>
-
-                    <div className="flex flex-col gap-[8px]">
-                        <div className="flex justify-between">
-                            <span className="font-['Inter'] text-[12px] text-[#5e677b]">Date</span>
-                            <span className="font-['Inter'] font-semibold text-[12px] text-[#2c313a]">{reportData.date}</span>
-                        </div>
-                        <div className="flex justify-between">
-                            <span className="font-['Inter'] text-[12px] text-[#5e677b]">Teacher</span>
-                            <span className="font-['Inter'] font-semibold text-[12px] text-[#2c313a]">{reportData.teacher}</span>
-                        </div>
-                        <div className="flex justify-between">
-                            <span className="font-['Inter'] text-[12px] text-[#5e677b]">Duration</span>
-                            <span className="font-['Inter'] font-semibold text-[12px] text-[#2c313a]">{reportData.duration}</span>
-                        </div>
-                    </div>
-                </div>
-
-                {/* Learning Objectives */}
-                <div className="bg-white rounded-[12px] p-[16px] shadow-[0px_4px_8px_0px_rgba(0,0,0,0.08)]">
-                    <p className="font-['Inter'] font-bold text-[14px] text-[#2c313a] mb-[12px]">Learning Objectives</p>
-                    <div className="flex flex-col gap-[8px]">
-                        {reportData.objectives.map((obj, i) => (
-                            <div key={i} className="flex items-start gap-[8px]">
-                                <div className="size-[18px] rounded-full bg-[#dbf5e8] flex items-center justify-center mt-[2px]">
-                                    <span className="text-[10px]">✓</span>
-                                </div>
-                                <p className="font-['Inter'] text-[13px] text-[#2c313a]">{obj}</p>
+                {/* Scrollable Content */}
+                <div className="flex flex-col px-[12px] gap-[12px]">
+                    {/* Calendar Card */}
+                    <div className="bg-white rounded-[20px] p-[16px] shadow-sm flex flex-col gap-[16px]">
+                        <div className="flex items-center justify-between">
+                            <span className="font-['Inter'] font-bold text-[16px] text-[#2C313A]">Des 2025</span>
+                            <div className="flex gap-[16px]">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="rotate-180 cursor-pointer">
+                                    <path d="M9 18L15 12L9 6" stroke="#2C313A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                </svg>
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="cursor-pointer">
+                                    <path d="M9 18L15 12L9 6" stroke="#2C313A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                </svg>
                             </div>
-                        ))}
-                    </div>
-                </div>
-
-                {/* Skills Assessment */}
-                <div className="bg-white rounded-[12px] p-[16px] shadow-[0px_4px_8px_0px_rgba(0,0,0,0.08)]">
-                    <p className="font-['Inter'] font-bold text-[14px] text-[#2c313a] mb-[12px]">Skills Assessment</p>
-                    <div className="flex flex-col gap-[12px]">
-                        {reportData.skills.map((skill) => (
-                            <div key={skill.name}>
-                                <div className="flex justify-between mb-[4px]">
-                                    <span className="font-['Inter'] text-[12px] text-[#5e677b]">{skill.name}</span>
-                                    <span className="font-['Inter'] font-bold text-[12px] text-[#2c313a]">{skill.score}%</span>
+                        </div>
+                        <div className="flex justify-between items-center text-center">
+                            {days.map((item, index) => (
+                                <div key={index} className="flex flex-col gap-[8px] items-center relative">
+                                    <span className={`text-[12px] font-medium ${item.active ? 'text-[#3CAB9E]' : 'text-[#9AA2B1]'}`}>
+                                        {item.day}
+                                    </span>
+                                    <span className={`text-[16px] font-bold ${item.active ? 'text-[#2C313A]' : 'text-[#9AA2B1]'}`}>
+                                        {item.date}
+                                    </span>
+                                    {item.active && (
+                                        <div className="absolute -bottom-[20px] w-[32px] h-[4px] bg-[#3CAB9E] rounded-t-full" />
+                                    )}
+                                    {item.active && (
+                                        <div className="absolute inset-x-[-8px] -top-[4px] -bottom-[4px] bg-[#EBFDFA] -z-10 rounded-[8px]" />
+                                    )}
                                 </div>
-                                <div className="h-[6px] bg-[#e5e5e5] rounded-full overflow-hidden">
-                                    <div
-                                        className="h-full bg-gradient-to-r from-[#7BD7FB] to-[#34CE9E] rounded-full"
-                                        style={{ width: `${skill.score}%` }}
-                                    />
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* Unit Info Section */}
+                    <div className="flex flex-col gap-[12px] mt-[4px]">
+                        <span className="font-['Inter'] text-[12px] text-[#5E677B]">25 November 2025</span>
+                        <h1 className="font-['Inter'] font-bold text-[16px] text-[#2C313A] leading-[1.3]">
+                            Unit A1 : [Placeholder Title]
+                        </h1>
+
+                        <div className="flex items-center gap-[12px]">
+                            <div className="w-[40px] h-[40px] bg-gray-200 rounded-full shrink-0 overflow-hidden">
+                                {/* Placeholder for teacher avatar if needed, or just gray circle */}
+                            </div>
+                            <div className="flex flex-col">
+                                <span className="text-[10px] text-[#5E677B]">Master Teacher</span>
+                                <span className="font-['Inter'] font-bold text-[12px] text-[#2C313A]">Winsi Elpril Sekarputri</span>
+                            </div>
+                        </div>
+
+                        {/* Hero Image */}
+                        <div className="relative w-full aspect-[328/180] rounded-[16px] overflow-hidden mt-[4px]">
+                            <Image
+                                src="/assets/images/thumbnail-activity.png"
+                                alt="Activity"
+                                fill
+                                className="object-cover"
+                                style={{ backgroundColor: '#e2e8f0' }}
+                            />
+                            {/* Fallback if image doesn't exist, using a colored div in style */}
+                            <div className="absolute inset-0 bg-slate-200 -z-10" />
+                        </div>
+                    </div>
+
+                    {/* Activity Detail Card */}
+                    <div className="bg-white rounded-[20px] p-[16px] shadow-sm flex flex-col gap-[16px] mt-[8px]">
+                        <div className="flex items-center gap-[12px]">
+                            <div className="size-[40px] bg-[#F7F9FD] rounded-full flex items-center justify-center">
+                                {/* Assuming a generic icon or just the circle */}
+                            </div>
+                            <span className="font-['Inter'] font-bold text-[16px] text-[#2C313A]">Activity Detail</span>
+                        </div>
+
+                        <div className="flex flex-col gap-[12px]">
+                            <div className="flex flex-col gap-[4px]">
+                                <h3 className="font-['Inter'] font-bold text-[14px] text-[#2C313A] flex items-center gap-[6px]">
+                                    <span>🎯</span> Tujuan pembelajaran
+                                </h3>
+                                <p className="font-['Inter'] text-[13px] text-[#2C313A] leading-[20px]">
+                                    To learn about living things and their young, life stages, and the number of offspring they have
+                                </p>
+                            </div>
+
+                            <div className="flex flex-col gap-[4px]">
+                                <h3 className="font-['Inter'] font-bold text-[14px] text-[#2C313A] flex items-center gap-[6px]">
+                                    <span>🧠</span> Fokus keterampilan yang dilatih
+                                </h3>
+                                <div className="font-['Inter'] text-[13px] text-[#2C313A] leading-[20px] space-y-2">
+                                    <p>Vocabulary:</p>
+                                    <p>-Animal offsprings: calf, joey, cub, puppy, kitten, caterpillar</p>
+                                    <p>-Human life stages: baby, toddler, kid, teenager, adult</p>
+                                    <p>-Plant life stages: seed, seedling, young plant, adult plant</p>
+                                    <p className="mt-[8px]">Structure: Nouns, pronouns (he, she, it, they, etc.), reflexive pronouns (themselves, herself, myself, etc.)</p>
                                 </div>
                             </div>
-                        ))}
+                        </div>
                     </div>
-                </div>
 
-                {/* Activities */}
-                <div className="bg-white rounded-[12px] p-[16px] shadow-[0px_4px_8px_0px_rgba(0,0,0,0.08)]">
-                    <p className="font-['Inter'] font-bold text-[14px] text-[#2c313a] mb-[12px]">Class Activities</p>
-                    <div className="flex flex-col gap-[10px]">
-                        {reportData.activities.map((activity, i) => (
-                            <div key={i} className="flex gap-[12px] items-start">
-                                <div className="size-[24px] rounded-full bg-[#f7f9fd] flex items-center justify-center shrink-0">
-                                    <span className="font-['Inter'] font-bold text-[10px] text-[#5e677b]">{i + 1}</span>
-                                </div>
-                                <div className="flex-1">
-                                    <div className="flex justify-between">
-                                        <p className="font-['Inter'] font-semibold text-[12px] text-[#2c313a]">{activity.name}</p>
-                                        <p className="font-['Inter'] text-[10px] text-[#5e677b]">{activity.duration}</p>
-                                    </div>
-                                    <p className="font-['Inter'] text-[11px] text-[#5e677b]">{activity.description}</p>
+                    {/* Catatan Perkembangan Card */}
+                    <div className="bg-white rounded-[20px] p-[16px] shadow-sm flex flex-col gap-[12px] mt-[4px]">
+                        <div className="flex items-center gap-[12px]">
+                            <div className="size-[24px] flex items-center justify-center">
+                                <div className="w-[32px] h-[32px] rounded-full bg-[#f7f9fd] flex items-center justify-center">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2C313A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                                    </svg>
                                 </div>
                             </div>
-                        ))}
+                            <span className="font-['Inter'] font-bold text-[16px] text-[#2C313A]">Catatan Perkembangan</span>
+                        </div>
+                        <p className="font-['Inter'] text-[13px] text-[#2C313A] leading-[20px]">
+                            Hari ini, Ananda aktif mengikuti semua kegiatan dengan antusiasme tinggi 🗣️. Dari penguasaan materi, Ananda memahami materi dengan sangat baik dan mampu mengerjakan tugas dengan mandiri 📖. Ketika berinteraksi dengan yang lain, Ananda menunjukkan kemampuan untuk berkomunikasi dengan lancar dan positif, bekerja sama, serta berbagi pendapat dengan percaya diri 👥.
+                        </p>
                     </div>
-                </div>
 
-                {/* Teacher Notes */}
-                <div className="bg-[#fff9ee] rounded-[12px] p-[16px] border border-[#f4c84d]">
-                    <div className="flex items-center gap-[8px] mb-[8px]">
-                        <span className="text-[16px]">💬</span>
-                        <p className="font-['Inter'] font-bold text-[14px] text-[#2c313a]">Teacher Notes</p>
+                    <div className="mt-[20px] mb-[80px]">
+                        <p className="font-['Inter'] text-[12px] text-[#2C313A] leading-[18px]">
+                            Mohon diinformasikan jika ada hal yang ingin Ayah/Bunda tanyakan.
+                        </p>
+                        <p className="font-['Inter'] text-[12px] text-[#2C313A] leading-[18px] mt-[12px]">
+                            Terima kasih atas perhatian dan kerja samanya. Hormat kami, English Academy Center
+                        </p>
                     </div>
-                    <p className="font-['Inter'] text-[13px] text-[#2c313a] leading-[20px] italic">
-                        "{reportData.teacherNotes}"
-                    </p>
+
+                    {/* Fixed Bottom Button */}
+                    <div className="fixed bottom-0 left-0 right-0 p-[12px] bg-white border-t border-slate-100 flex justify-center z-50">
+                        {/* Constrain width for desktop view compatibility if inside a container */}
+                        <div className="w-full max-w-[450px]">
+                            <button className="w-full bg-[#F26D0F] text-white font-['Inter'] font-bold text-[16px] py-[14px] rounded-full shadow-lg active:scale-[0.98] transition-transform">
+                                Tanya Master Teacher
+                            </button>
+                        </div>
+                    </div>
+
+                    <div className="h-[20px]" />
                 </div>
             </div>
         </div>

@@ -8,17 +8,18 @@ const svgPaths = {
 };
 
 const reports = [
-    { id: '1', unit: 'Unit A · Language Introduction', title: 'Cooking verbs and kitchen terms', date: '4 Hours ago', status: 'present' as const },
-    { id: '2', unit: 'Unit A · Culture & Pronunciation', title: 'Thai traditional cuisine', date: '2 Days ago', status: 'present' as const },
-    { id: '3', unit: 'Unit A · Language Practice', title: 'Zero conditional sentences', date: '5 Days ago', status: 'absent' as const },
-    { id: '4', unit: 'Unit A · Language Extension', title: 'Kitchen equipment vocabulary', date: '1 Week ago', status: 'sick' as const },
-    { id: '5', unit: 'Unit A · Review', title: 'Unit A Review Session', date: '2 Weeks ago', status: 'present' as const },
-    { id: '6', unit: 'Unit B · Introduction', title: 'History and Archaeology', date: '2 Weeks ago', status: 'present' as const },
+    { id: '1', unit: 'Unit J · Writing Skills', title: 'Essay Structure', date: '5 Hour ago', status: 'present' as const },
+    { id: '2', unit: 'Unit I · Cultural Insights', title: 'Festivals and Traditions', date: '25 Nov 2025', status: 'present' as const },
+    { id: '3', unit: 'Unit H · Listening Comprehension', title: 'Daily Conversations', date: '25 Nov 2025', status: 'present' as const },
+    { id: '4', unit: 'Unit G · Pronunciation Practice', title: 'Common Phonemes', date: '25 Nov 2025', status: 'present' as const },
+    { id: '5', unit: 'Unit F · Vocabulary Expansion', title: 'Food and Drink', date: '2 Weeks ago', status: 'present' as const },
+    { id: '6', unit: 'Unit E · Grammar Basics', title: 'Tenses and Usage', date: '3 Weeks ago', status: 'present' as const },
+    { id: '7', unit: 'Unit D · Language Introduction', title: 'Kata kerja memasak', date: '4 Weeks ago', status: 'present' as const },
 ];
 
 function ReportCard({ report }: { report: typeof reports[0] }) {
     const statusColors = {
-        present: { bg: 'bg-[#dbf5e8]', text: 'text-[#2a7650]', label: 'Present' },
+        present: { bg: 'bg-[#dbf5e8]', text: 'text-[#2a7650]', label: 'Hadir' },
         absent: { bg: 'bg-[#fce8e8]', text: 'text-[#c73131]', label: 'Absent' },
         sick: { bg: 'bg-[#fff4e6]', text: 'text-[#d97706]', label: 'Sick' },
         excused: { bg: 'bg-[#e8f4fd]', text: 'text-[#1976d2]', label: 'Excused' },
@@ -59,7 +60,7 @@ export default function ClassReportListPage() {
             <div
                 className="relative overflow-hidden rounded-bl-[28px] w-full"
                 style={{
-                    backgroundImage: "linear-gradient(90deg, rgba(4, 35, 81, 0.14) 0%, rgba(4, 35, 81, 0.14) 100%), linear-gradient(161.996deg, rgb(123, 215, 251) 0%, rgb(52, 206, 158) 100%)",
+                    backgroundImage: "linear-gradient(169.875deg, #2B2A72 0%, #FF4546 100%)",
                 }}
             >
                 <div className="bg-[#1fb0c3] h-[24px] w-full" />
@@ -77,22 +78,6 @@ export default function ClassReportListPage() {
                     </p>
                     <div className="w-[34px]" />
                 </div>
-            </div>
-
-            {/* Filter Tabs */}
-            <div className="bg-white p-[12px] flex gap-[8px]">
-                <button className="px-[12px] py-[6px] rounded-full bg-[#20a4b0] text-white font-['Inter'] font-bold text-[12px]">
-                    All
-                </button>
-                <button className="px-[12px] py-[6px] rounded-full bg-[#f7f9fd] text-[#5e677b] font-['Inter'] font-normal text-[12px]">
-                    Present
-                </button>
-                <button className="px-[12px] py-[6px] rounded-full bg-[#f7f9fd] text-[#5e677b] font-['Inter'] font-normal text-[12px]">
-                    Absent
-                </button>
-                <button className="px-[12px] py-[6px] rounded-full bg-[#f7f9fd] text-[#5e677b] font-['Inter'] font-normal text-[12px]">
-                    Sick
-                </button>
             </div>
 
             {/* Reports List */}
