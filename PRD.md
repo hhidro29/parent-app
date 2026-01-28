@@ -145,7 +145,7 @@ interface Child {
 
 #### Notes
 - Untuk prototype: Static UI, tidak functional
-- Production: Akan integrate dengan real-time messaging (e.g., Supabase Realtime)
+- Production: Akan integrate dengan Airtable atau layanan pihak ketiga lainnya
 
 ---
 
@@ -327,18 +327,14 @@ interface ChildProfile {
 ├── React 18.3.1
 └── TypeScript 5.x
 
-🗄️ Backend
-├── Supabase
-│   ├── Authentication
-│   ├── PostgreSQL Database
-│   ├── Realtime (for chat)
-│   └── Storage (for images)
-├── Prisma (ORM)
+🗄️ Backend (Simplified)
+├── Airtable (Headless CMS & Database)
+├── Server Actions (Next.js)
 └── Vercel Edge Functions
 
 🔐 Authentication
-├── Supabase Auth
-└── Magic Link / OTP
+├── Custom / Magic Link (via Airtable logic)
+└── Future: NextAuth.js
 
 📊 Analytics
 ├── Vercel Analytics
@@ -455,8 +451,8 @@ npx vercel --prod
 
 | Variable | Description | Required |
 |----------|-------------|----------|
-| `VITE_SUPABASE_URL` | Supabase project URL | Production |
-| `VITE_SUPABASE_ANON_KEY` | Supabase anonymous key | Production |
+| `NEXT_PUBLIC_AIRTABLE_API_TOKEN` | Airtable Personal Access Token | Production |
+| `NEXT_PUBLIC_AIRTABLE_BASE_ID` | Airtable Base ID | Production |
 | `VITE_API_URL` | Backend API URL | Production |
 
 ---
@@ -533,8 +529,7 @@ Sentry.init({
 - [ ] Usability testing
 
 ### Phase 2: MVP
-- [ ] Backend integration (Supabase)
-- [ ] Real authentication
+- [ ] Backend integration (Airtable)
 - [ ] Real data fetching
 - [ ] Push notifications
 
@@ -557,11 +552,11 @@ Sentry.init({
 ### Prototype Limitations
 | Issue | Impact | Mitigation |
 |-------|--------|------------|
-| Static data | No real updates | Will be replaced with Supabase |
-| No auth | Anyone can access | Will add Supabase Auth |
+| Static data | No real updates | Will be replaced with Airtable |
+| No auth | Anyone can access | Will add Simple Auth |
 | No persistence | State lost on refresh | Will add state management |
 | Fixed width (450px) | Not fully responsive | Design for mobile-first, enhance later |
-| No backend | No API calls | Will integrate Supabase |
+| No backend | No API calls | Will integrate Airtable |
 
 ### Technical Debt
 - [ ] Refactor `App.tsx` routing to use React Router
@@ -582,7 +577,7 @@ Sentry.init({
 - [Vite Documentation](https://vitejs.dev/)
 - [Tailwind CSS v4](https://tailwindcss.com/)
 - [Radix UI](https://www.radix-ui.com/)
-- [Supabase Docs](https://supabase.com/docs)
+- [Airtable API](https://airtable.com/developers/web/api/introduction)
 
 ### Related Repositories
 - This project: `/Users/fa-15511/Documents/project-ruangguru/parentapp`

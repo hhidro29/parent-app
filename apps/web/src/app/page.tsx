@@ -163,7 +163,7 @@ function SilverBadge() {
 
 function UserCapsule() {
   return (
-    <div className="bg-white rounded-full p-[8px] flex items-center justify-between w-full shadow-[0px_4px_12px_rgba(0,0,0,0.08)] z-10">
+    <Link href="/reward" className="bg-white rounded-full p-[8px] flex items-center justify-between w-full shadow-[0px_4px_12px_rgba(0,0,0,0.08)] z-10 cursor-pointer">
       <div className="flex items-center gap-[10px]">
         {/* Avatar */}
         <div className="relative size-[36px] rounded-full overflow-hidden">
@@ -175,7 +175,7 @@ function UserCapsule() {
         </p>
       </div>
       <SilverBadge />
-    </div>
+    </Link>
   );
 }
 
@@ -217,7 +217,7 @@ function PromoCard() {
           </div>
           <div className="content-stretch flex flex-[1_0_0] flex-col gap-[4px] items-start min-h-px min-w-px relative">
             <div className="content-stretch flex gap-[4px] items-start relative shrink-0 w-full">
-              <p className="flex-[1_0_0] font-['Inter'] font-semibold leading-[18px] min-h-px min-w-px not-italic relative text-[12px] text-black">Spesial Buat Kamu</p>
+              <p className="flex-[1_0_0] font-['Inter'] font-semibold leading-[18px] min-h-px min-w-px not-italic relative text-[12px] text-black">Spesial Buat Anak Anda</p>
             </div>
           </div>
           <CloseIcon />
@@ -353,10 +353,12 @@ function AnnouncementCard() {
 
 function SessionReportCard() {
   return (
-    <div className="bg-white relative rounded-[12px] shrink-0 w-full">
+    <Link href="/learning/report/2" className="bg-white relative rounded-[12px] shrink-0 w-full block">
       <div aria-hidden="true" className="absolute border border-[#cfd3db] border-solid inset-0 pointer-events-none rounded-[12px]" />
       <div className="content-stretch flex flex-col gap-[12px] items-start p-[12px] relative w-full">
-        <div className="content-stretch flex gap-[12px] items-center relative shrink-0 w-full">
+        {/* Header with Avatar and Info */}
+        <div className="content-stretch flex gap-[8px] items-start relative shrink-0 w-full">
+          {/* Avatar */}
           <div className="relative shrink-0 size-[28px] rounded-full overflow-hidden">
             <Image
               src="/assets/images/profile-dora.png"
@@ -365,21 +367,51 @@ function SessionReportCard() {
               className="object-cover"
             />
           </div>
-          <div className="content-stretch flex flex-[1_0_0] flex-col gap-[4px] items-start min-h-px min-w-px not-italic relative text-black">
-            <div className="content-stretch flex font-['Inter'] font-normal gap-[4px] items-start leading-[normal] relative shrink-0 text-[12px] w-full">
-              <p className="flex-[1_0_0] min-h-px min-w-px relative">Dora A · English Academy</p>
-              <p className="relative shrink-0">{` 4 hours ago`}</p>
+
+          {/* Info section */}
+          <div className="content-stretch flex flex-[1_0_0] flex-col gap-[2px] items-start min-h-px min-w-px relative">
+            {/* Top row: Name · School | Timestamp */}
+            <div className="content-stretch flex items-center justify-between relative shrink-0 w-full">
+              <p className="font-['Inter'] font-normal leading-[18px] not-italic text-[12px] text-[#5e677b]">
+                Dora A · English Academy
+              </p>
+              <p className="font-['Inter'] font-normal leading-[18px] not-italic text-[12px] text-[#959dac]">
+                4 hours ago
+              </p>
             </div>
-            <p className="font-['Inter'] font-bold leading-[22px] relative shrink-0 text-[14px] w-full">Dora&apos;s Session Report</p>
+            {/* Title row */}
+            <p className="font-['Inter'] font-bold leading-[22px] not-italic text-[14px] text-black">
+              Dora&apos;s Session Report
+            </p>
           </div>
         </div>
-        <div className="bg-[#d9d9d9] h-px shrink-0 w-full" />
-        <div className="content-stretch flex flex-col gap-[4px] items-start relative shrink-0 w-full">
-          <p className="font-['Inter'] font-normal leading-[22px] min-w-full not-italic relative shrink-0 text-[#2c313a] text-[14px] w-[min-content]">Discovering Me - This Is Me!</p>
+
+        {/* Image - height 120px as per design */}
+        <div className="h-[120px] w-full rounded-[8px] overflow-hidden relative">
+          <Image
+            src="/assets/images/promo-banner-discovering-me.png"
+            alt="Discovering Me - This Is Me!"
+            fill
+            className="object-cover"
+          />
         </div>
-        <p className="font-['Inter'] font-bold leading-[22px] min-w-full not-italic relative shrink-0 text-[#20a4b0] text-[14px] text-right w-[min-content]">See Detail</p>
+
+        {/* Content */}
+        <div className="content-stretch flex flex-col gap-[4px] items-start relative shrink-0 w-full">
+          <p className="font-['Inter'] font-bold leading-[22px] not-italic relative shrink-0 text-[14px] text-black w-full">
+            Discovering Me - This Is Me!
+          </p>
+          <p className="font-['Inter'] font-normal leading-[18px] not-italic relative shrink-0 text-[#2c313a] text-[12px] w-full">
+            {`We hope you're having a great day! Here is Little Wonder's update from the classroom:`}
+          </p>
+        </div>
+
+        {/* CTA Link */}
+        <p className="font-['Inter'] font-bold leading-[22px] min-w-full not-italic relative shrink-0 text-[#20a4b0] text-[14px] text-right w-[min-content]">
+          See Session Report
+        </p>
       </div>
-    </div>
+    </Link>
   );
 }
 

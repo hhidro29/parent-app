@@ -66,7 +66,7 @@ export default function DiscoveryPage() {
                             <path d="M12 19L5 12L12 5" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
                     </Link>
-                    <h1 className="font-['Inter'] font-bold text-[20px] text-white tracking-tight">Spesial Buat Kamu</h1>
+                    <h1 className="font-['Inter'] font-bold text-[20px] text-white tracking-tight">Spesial Buat Anak Anda</h1>
                 </div>
             </div>
 

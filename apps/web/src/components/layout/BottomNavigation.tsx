@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 
 const svgPaths = {
@@ -78,7 +79,7 @@ function DiscoveryIcon({ active }: { active: boolean }) {
                     <path clipRule="evenodd" d={svgPaths.discoverySparkle} fill={active ? "#20A4B0" : "#959DAC"} fillRule="evenodd" />
                 </g>
             </svg>
-        </div>
+        </div >
     );
 }
 
