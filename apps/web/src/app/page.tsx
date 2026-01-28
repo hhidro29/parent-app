@@ -172,7 +172,7 @@ function PromoCard() {
         </div>
 
         {/* Promo Image */}
-        <div className="h-[133px] overflow-hidden relative rounded-[12px] shrink-0 w-full bg-gradient-to-r from-[#b8eff3]/85 to-[#34CE9E]">
+        <Link href="/my-child" className="h-[133px] overflow-hidden relative rounded-[12px] shrink-0 w-full bg-gradient-to-r from-[#b8eff3]/85 to-[#34CE9E]">
           <Image
             src="/assets/images/promo-banner-wonderlab.png"
             alt="Champions Wonderlab"
@@ -194,7 +194,7 @@ function PromoCard() {
               </button>
             </div>
           </div>
-        </div>
+        </Link>
 
         {/* Pagination dots */}
         <div className="content-stretch flex items-center justify-between relative shrink-0 w-full">
@@ -205,7 +205,7 @@ function PromoCard() {
               <circle cx="20.5" cy="2.5" fill="#D9D9D9" r="2.5" />
             </svg>
           </div>
-          <p className="font-['Inter'] font-semibold leading-[16px] not-italic relative shrink-0 text-[#20a4b0] text-[12px] text-center">Lihat Semua</p>
+          <Link href="/my-child" className="font-['Inter'] font-semibold leading-[16px] not-italic relative shrink-0 text-[#20a4b0] text-[12px] text-center">Lihat Semua</Link>
         </div>
       </div>
     </div>
