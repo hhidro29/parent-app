@@ -72,9 +72,13 @@ export default function DiscoveryPage() {
                 <div className="w-full px-[20px] mb-[10px]">
                     <div className="w-full h-[180px] bg-gray-300 rounded-[12px] relative overflow-hidden shadow-lg">
                         {/* PLACEHOLDER FOR FESTIVAL BANNER */}
-                        <div className="absolute inset-0 flex items-center justify-center text-gray-500 font-bold">
-                            [Banner: Festival Semester Baru]
-                        </div>
+                        <Image
+                            src="/assets/images/page-specialbuatkamu/banner-promo-specialbuatkamu.png"
+                            alt="Festival Semester Baru Banner"
+                            fill
+                            className="object-cover"
+                            priority
+                        />
                     </div>
 
                     {/* Pagination Dots */}
