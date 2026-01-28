@@ -71,45 +71,79 @@ const LIAM_JOURNAL = [
     }
 ];
 
-const CLASS_REPORTS = [
+const ALL_REPORTS = [
     {
-        id: "1",
-        unit: "Unit A · Language Introduction",
-        title: "Cooking verbs and kitchen terms",
-        time: "4 Hours ago",
-        status: "Present",
+        id: "c1",
+        type: "Class Report",
+        unit: "Unit J · Writing Skills",
+        title: "Essay Structure",
+        time: "5 Hour ago",
+        status: "Hadir",
         statusColor: "bg-[#dbf5e8] text-[#2a7650]",
+        link: "/learning/report/1"
     },
     {
-        id: "2",
-        unit: "Unit A · Culture & Pronunciation",
-        title: "Thai traditional cuisine",
-        time: "2 Days ago",
-        status: "Present",
+        id: "c2",
+        type: "Class Report",
+        unit: "Unit J · Writing Skills",
+        title: "Grammar Essentials",
+        time: "1 Week ago",
+        status: "Hadir",
         statusColor: "bg-[#dbf5e8] text-[#2a7650]",
-    }
-];
-
-const PERIODICAL_REPORTS = [
-    {
-        title: "Dasher 3 - Learning Report 1",
-        date: "Published 25 November 2025",
+        link: "/learning/report/2"
     },
     {
-        title: "Dasher 3 - Learning Report 2",
-        date: "Published 25 November 2025",
+        id: "c3",
+        type: "Class Report",
+        unit: "Unit K · Creative Writing",
+        title: "Character Development",
+        time: "2 Week ago",
+        status: "Hadir",
+        statusColor: "bg-[#dbf5e8] text-[#2a7650]",
+        link: "/learning/report/3"
     },
     {
-        title: "Dasher 3 - Final Report",
-        date: "Published 25 November 2025",
+        id: "c4",
+        type: "Class Report",
+        unit: "Unit L · Literature Analysis",
+        title: "Poetry Techniques",
+        time: "3 Week ago",
+        status: "Hadir",
+        statusColor: "bg-[#dbf5e8] text-[#2a7650]",
+        link: "/learning/report/4"
+    },
+    {
+        id: "p1",
+        type: "Teacher Parent Report",
+        title: "[kids Name] - Learning Report 1",
+        time: "3 Week ago",
+        link: "#"
+    },
+    {
+        id: "c5",
+        type: "Class Report",
+        unit: "Unit M · Research Skills",
+        title: "Citing Sources",
+        time: "4 Week ago",
+        status: "Hadir",
+        statusColor: "bg-[#dbf5e8] text-[#2a7650]",
+        link: "/learning/report/5"
     }
 ];
 
 export default function LearningPage() {
     const [selectedChildId, setSelectedChildId] = useState("liam");
     const [activeTab, setActiveTab] = useState<"report" | "journal">("report");
+    const [reportFilter, setReportFilter] = useState("All");
 
     const selectedChild = CHILDREN_DATA.find(c => c.id === selectedChildId) || CHILDREN_DATA[0];
+
+    const filteredReports = ALL_REPORTS.filter(report => {
+        if (reportFilter === "All") return true;
+        if (reportFilter === "Class Report") return report.type === "Class Report";
+        if (reportFilter === "Parent Teacher Report") return report.type === "Teacher Parent Report";
+        return true;
+    });
 
     return (
         <div className="flex flex-col min-h-full w-full bg-[#F7F9FD] pb-[100px]">
@@ -207,6 +241,20 @@ export default function LearningPage() {
                 </div>
             </div>
 
+            {/* Stats Section */}
+            <div className="w-full px-[12px] pb-[12px] bg-white">
+                <div className="flex gap-[12px] w-full">
+                    <div className="flex-1 bg-[#F5EDEF] rounded-[12px] p-[12px]">
+                        <p className="font-['Inter'] font-normal text-[12px] text-[#5E677B] mb-[2px]">Lesson Complete</p>
+                        <p className="font-['Inter'] font-bold text-[14px] text-[#2C313A]">{selectedChild.stats.lessonComplete}</p>
+                    </div>
+                    <div className="flex-1 bg-[#F5EDEF] rounded-[12px] p-[12px]">
+                        <p className="font-['Inter'] font-normal text-[12px] text-[#5E677B] mb-[2px]">Attendance</p>
+                        <p className="font-['Inter'] font-bold text-[14px] text-[#2C313A]">{selectedChild.stats.attendance}</p>
+                    </div>
+                </div>
+            </div>
+
             {/* Main Tabs */}
             <div className="w-full px-[12px] bg-white flex gap-[24px] border-b border-[#F1F5F9]">
                 {["Report", "Journal"].map(tab => (
@@ -229,74 +277,69 @@ export default function LearningPage() {
             <div className="flex flex-col p-[12px] gap-[12px]">
                 {activeTab === "report" ? (
                     <>
-                        {/* Stats Section */}
-                        <div className="flex gap-[12px] w-full">
-                            <div className="flex-1 bg-[#F5EDEF] rounded-[12px] p-[12px]">
-                                <p className="font-['Inter'] font-normal text-[12px] text-[#5E677B] mb-[2px]">Lesson Complete</p>
-                                <p className="font-['Inter'] font-bold text-[14px] text-[#2C313A]">{selectedChild.stats.lessonComplete}</p>
-                            </div>
-                            <div className="flex-1 bg-[#F5EDEF] rounded-[12px] p-[12px]">
-                                <p className="font-['Inter'] font-normal text-[12px] text-[#5E677B] mb-[2px]">Attendance</p>
-                                <p className="font-['Inter'] font-bold text-[14px] text-[#2C313A]">{selectedChild.stats.attendance}</p>
-                            </div>
+                        {/* Filter Pills */}
+                        <div className="flex gap-[8px] overflow-x-auto pb-[4px] -mx-[12px] px-[12px] scrollbar-hide">
+                            {["All", "Class Report", "Parent Teacher Report"].map(filter => (
+                                <button
+                                    key={filter}
+                                    onClick={() => setReportFilter(filter)}
+                                    className={`px-[16px] py-[8px] rounded-full border whitespace-nowrap transition-colors ${reportFilter === filter
+                                        ? "bg-[#E6F6F8] border-[#34CE9E] text-[#2C313A] font-bold"
+                                        : "bg-white border-[#E2E8F0] text-[#5E677B]"
+                                        } text-[13px]`}
+                                >
+                                    {filter}
+                                </button>
+                            ))}
                         </div>
 
-                        {/* Class Report Section */}
+                        {/* Unified Report List */}
                         <div className="flex flex-col gap-[12px]">
-                            <div className="flex items-center justify-between">
-                                <h2 className="font-['Inter'] font-bold text-[16px] text-[#2C313A]">Class Report</h2>
-                                <Link href="/learning/report" className="font-['Inter'] font-bold text-[14px] text-[#13939E]">Lihat Semua</Link>
-                            </div>
-
-                            <div className="flex gap-[12px] overflow-x-auto pb-[4px] -mx-[12px] px-[12px] scrollbar-hide">
-                                {CLASS_REPORTS.map(report => (
-                                    <div key={report.id} className="min-w-[296px] bg-white rounded-[12px] p-[12px] shadow-[0px_12px_16px_0px_rgba(129,134,142,0.12)] shrink-0 flex flex-col gap-[12px]">
-                                        <div className="flex flex-col gap-[4px]">
-                                            <div className="flex items-center justify-between">
-                                                <span className="font-['Inter'] font-normal text-[11px] text-[#5E677B] leading-[16px]">{report.unit}</span>
-                                                <span className="font-['Inter'] font-normal text-[11px] text-[#5E677B] leading-[16px]">{report.time}</span>
-                                            </div>
-                                            <h3 className="font-['Inter'] font-semibold text-[14px] text-[#2C313A] leading-[22px]">{report.title}</h3>
+                            {filteredReports.map((report) => (
+                                <div key={report.id} className="bg-white rounded-[16px] p-[16px] flex flex-col gap-[12px] shadow-sm border border-slate-100">
+                                    {/* Header */}
+                                    <div className="flex items-center justify-between">
+                                        <div className="flex items-center gap-[8px] overflow-hidden">
+                                            <span className={`font-['Inter'] font-bold text-[12px] whitespace-nowrap ${report.type === "Class Report" ? "text-[#13939E]" : "text-[#F26D0F]"
+                                                }`}>
+                                                {report.type}
+                                            </span>
+                                            {report.unit && (
+                                                <span className="font-['Inter'] font-normal text-[12px] text-[#5E677B] truncate">
+                                                    {report.unit}
+                                                </span>
+                                            )}
                                         </div>
-                                        <div className="h-[1px] bg-[#D9D9D9] w-full" />
-                                        <div className="flex items-center justify-between">
-                                            <div className={`px-[12px] py-[8px] rounded-[12px] flex items-center justify-center ${report.statusColor}`}>
-                                                <span className="font-['Inter'] font-bold text-[12px] leading-[18px]">{report.status}</span>
-                                            </div>
-                                            <Link
-                                                href={`/learning/report/${report.id}`}
-                                                className="bg-[#F26D0F] text-white font-bold text-[12px] px-[12px] h-[28px] rounded-full active:scale-95 transition-transform flex items-center justify-center"
-                                            >
-                                                See Report
-                                            </Link>
-                                        </div>
+                                        <span className="font-['Inter'] font-normal text-[11px] text-[#9BA3AF] whitespace-nowrap shrink-0">
+                                            {report.time}
+                                        </span>
                                     </div>
-                                ))}
-                            </div>
-                        </div>
 
-                        {/* Periodical Report Section */}
-                        <div className="flex flex-col gap-[12px]">
-                            <div className="flex items-center justify-between">
-                                <h2 className="font-['Inter'] font-bold text-[16px] text-[#2C313A]">Periodical Report</h2>
-                                <Link href="#" className="font-['Inter'] font-bold text-[14px] text-[#13939E]">Lihat Semua</Link>
-                            </div>
+                                    {/* Title */}
+                                    <h3 className="font-['Inter'] font-bold text-[16px] text-[#2C313A] leading-[24px]">
+                                        {report.title}
+                                    </h3>
 
-                            <div className="flex flex-col gap-[12px]">
-                                {PERIODICAL_REPORTS.map((report, idx) => (
-                                    <div key={idx} className="bg-white rounded-[12px] p-[12px] flex items-center shadow-[0px_12px_16px_0px_rgba(129,134,142,0.12)] active:bg-slate-50 cursor-pointer">
-                                        <div className="w-[36px] h-[36px] rounded-full mr-[12px] shrink-0"
-                                            style={{ background: "linear-gradient(180deg, #AEDD6B 0%, #4F49D6 100%)" }} />
-                                        <div className="flex flex-col flex-1">
-                                            <span className="font-['Inter'] font-bold text-[14px] text-[#2C313A] leading-[22px]">{report.title}</span>
-                                            <span className="font-['Inter'] font-normal text-[11px] text-[#5E677B] leading-[16px]">{report.date}</span>
-                                        </div>
-                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#79808F" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                                            <path d="M9 18l6-6-6-6" />
-                                        </svg>
+                                    <div className="h-[1px] bg-[#F1F5F9] w-full" />
+
+                                    {/* Footer */}
+                                    <div className="flex items-center justify-between">
+                                        {report.status ? (
+                                            <div className="px-[12px] py-[6px] rounded-[8px] bg-[#E6F6F8] flex items-center justify-center">
+                                                <span className="font-['Inter'] font-bold text-[12px] text-[#258B79]">{report.status}</span>
+                                            </div>
+                                        ) : (
+                                            <div /> /* Spacer if no status */
+                                        )}
+                                        <Link
+                                            href={report.link}
+                                            className="bg-[#F26D0F] text-white font-bold text-[12px] px-[16px] h-[32px] rounded-full active:scale-95 transition-transform flex items-center justify-center shadow-orange-200 shadow-sm"
+                                        >
+                                            See Report
+                                        </Link>
                                     </div>
-                                ))}
-                            </div>
+                                </div>
+                            ))}
                         </div>
                     </>
                 ) : (
