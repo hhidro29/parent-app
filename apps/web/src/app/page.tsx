@@ -11,6 +11,8 @@ const svgPaths = {
   imageCircle: "M16 9C17.1046 9 18 8.10457 18 7C18 5.89543 17.1046 5 16 5C14.8954 5 14 5.89543 14 7C14 8.10457 14.8954 9 16 9Z",
   filter: "M3.42684 7.58377L5.23267 7.58375C5.64963 9.40899 7.24185 10.7678 9.14239 10.7678C11.043 10.7678 12.6352 9.40895 13.0521 7.58368L20.5732 7.58362C21.0851 7.58361 21.5 7.1565 21.5 6.62964C21.5 6.10277 21.085 5.67567 20.5732 5.67567L13.0502 5.67574C12.6303 3.85467 11.0401 2.5 9.14239 2.5C7.2447 2.5 5.65441 3.8547 5.23455 5.6758L3.42682 5.67582C2.91495 5.67582 2.5 6.10294 2.5 6.6298C2.5 7.15666 2.91496 7.58377 3.42684 7.58377ZM3.42683 18.3202H11.4125C11.831 20.1433 13.4222 21.4999 15.3212 21.4999C17.2203 21.4999 18.8115 20.1433 19.23 18.3202H20.5732C21.085 18.3202 21.5 17.8931 21.5 17.3663C21.5 16.8394 21.085 16.4123 20.5732 16.4123H19.2301C18.8117 14.589 17.2204 13.2322 15.3212 13.2322C13.4221 13.2322 11.8308 14.589 11.4124 16.4123H3.42683C2.91496 16.4123 2.5 16.8394 2.5 17.3663C2.5 17.8931 2.91496 18.3202 3.42683 18.3202Z",
   close: "M15.5544 5.79248C15.9263 5.42055 15.9263 4.81754 15.5544 4.44561C15.1825 4.07368 14.5794 4.07368 14.2075 4.44561L10 8.65313L5.79248 4.44561C5.42055 4.07368 4.81754 4.07368 4.44561 4.44561C4.07368 4.81754 4.07368 5.42055 4.44561 5.79248L8.65313 10L4.44561 14.2075C4.07368 14.5794 4.07368 15.1825 4.44561 15.5544C4.81754 15.9263 5.42055 15.9263 5.79248 15.5544L10 11.3469L14.2075 15.5544C14.5794 15.9263 15.1825 15.9263 15.5544 15.5544C15.9263 15.1825 15.9263 14.5794 15.5544 14.2075L11.3469 10L15.5544 5.79248Z",
+  medal: "M10 2C5.58172 2 2 5.58172 2 10C2 14.4183 5.58172 18 10 18C14.4183 18 18 14.4183 18 10C18 5.58172 14.4183 2 10 2ZM10 12.5L7.94271 13.5816L8.33519 11.2908L6.67039 9.66842L8.96136 9.33418L10 7.25L11.0386 9.33418L13.3296 9.66842L11.6648 11.2908L12.0573 13.5816L10 12.5Z",
+  chevronRight: "M8.5 5L13.5 10L8.5 15",
 };
 
 function CurrencyDollar() {
@@ -59,6 +61,26 @@ function CloseIcon() {
     <div className="relative shrink-0 size-[20px]">
       <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 20 20">
         <path clipRule="evenodd" d={svgPaths.close} fill="#959DAC" fillRule="evenodd" />
+      </svg>
+    </div>
+  );
+}
+
+function MedalIcon() {
+  return (
+    <div className="relative shrink-0 size-[18px]">
+      <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 20 20">
+        <path d={svgPaths.medal} fill="#FFFFFF" fillOpacity="0.8" />
+      </svg>
+    </div>
+  );
+}
+
+function ChevronRightIcon() {
+  return (
+    <div className="relative shrink-0 size-[16px]">
+      <svg className="block size-full" fill="none" stroke="#FFFFFF" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 20 20">
+        <path d={svgPaths.chevronRight} />
       </svg>
     </div>
   );
@@ -127,11 +149,41 @@ function QuickActions() {
   );
 }
 
+function SilverBadge() {
+  return (
+    <div className="bg-gradient-to-r from-[#A0A9B8] to-[#D5DEEB] flex items-center gap-[6px] pl-[6px] pr-[10px] py-[4px] rounded-full shadow-[0px_2px_4px_rgba(0,0,0,0.1)]">
+      <div className="relative size-[18px]">
+        <Image src="/assets/images/icon-silver.png" alt="Silver Icon" fill className="object-contain" />
+      </div>
+      <span className="font-['Inter'] font-bold text-white text-[13px] leading-tight">Silver</span>
+      <ChevronRightIcon />
+    </div>
+  );
+}
+
+function UserCapsule() {
+  return (
+    <div className="bg-white rounded-full p-[8px] flex items-center justify-between w-full shadow-[0px_4px_12px_rgba(0,0,0,0.08)] z-10">
+      <div className="flex items-center gap-[10px]">
+        {/* Avatar */}
+        <div className="relative size-[36px] rounded-full overflow-hidden">
+          <Image src="/assets/images/avatar-parent.png" alt="Parent Avatar" fill className="object-cover" />
+        </div>
+        {/* Greeting */}
+        <p className="font-['Inter'] font-bold text-[#2C313A] text-[15px] leading-tight text-nowrap">
+          Halo, Liam Parent
+        </p>
+      </div>
+      <SilverBadge />
+    </div>
+  );
+}
+
 function HeaderSection() {
   return (
-    <div className="content-stretch flex flex-col gap-[10px] items-start p-[12px] relative w-full">
+    <div className="content-stretch flex flex-col gap-[14px] items-center px-[12px] py-[12px] relative w-full pt-[16px]">
       <HeaderBackground />
-      <p className="font-['Inter'] font-bold leading-[24px] not-italic relative shrink-0 text-[20px] text-white z-10">Good Morning</p>
+      <UserCapsule />
       <QuickActions />
     </div>
   );
