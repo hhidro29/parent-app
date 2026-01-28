@@ -62,12 +62,26 @@ function ChatIcon({ active }: { active: boolean }) {
     );
 }
 
+function DiscoveryIcon({ active }: { active: boolean }) {
+    return (
+        <div className="relative shrink-0 size-[24px]">
+            <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 24 24">
+                <rect x="3" y="3" width="7" height="7" rx="1" stroke={active ? "#20A4B0" : "#959DAC"} strokeWidth="2" />
+                <rect x="14" y="3" width="7" height="7" rx="1" stroke={active ? "#20A4B0" : "#959DAC"} strokeWidth="2" />
+                <rect x="3" y="14" width="7" height="7" rx="1" stroke={active ? "#20A4B0" : "#959DAC"} strokeWidth="2" />
+                <circle cx="17.5" cy="17.5" r="3.5" stroke={active ? "#20A4B0" : "#959DAC"} strokeWidth="2" />
+            </svg>
+        </div>
+    );
+}
+
 export default function BottomNavigation() {
     const pathname = usePathname();
 
     const isHome = pathname === "/";
     const isLearning = pathname.startsWith("/learning");
     const isChat = pathname.startsWith("/chat");
+    const isDiscovery = pathname.startsWith("/discovery");
 
     // Don't show navigation on full-screen pages
     const hiddenPaths = ["/payment", "/my-child", "/reward", "/auth"];
@@ -113,6 +127,19 @@ export default function BottomNavigation() {
                         }`}
                 >
                     Chat
+                </p>
+            </Link>
+
+            <Link
+                href="/discovery"
+                className="flex flex-1 flex-col gap-[4px] items-center justify-center"
+            >
+                <DiscoveryIcon active={isDiscovery} />
+                <p
+                    className={`font-['Inter'] leading-[18px] text-[12px] ${isDiscovery ? "font-semibold text-[#13939e]" : "font-normal text-[#959dac]"
+                        }`}
+                >
+                    Discovery
                 </p>
             </Link>
         </div>
