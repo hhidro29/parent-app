@@ -16,7 +16,7 @@ const PROGRAMS = [
         id: "wonderlab",
         title: "Champions Wonderlab",
         description: "Program Belajar dan Stimulasi Anak Usia Dini Terinspirasi dari Kurikulum Singapura",
-        image: "/assets/images/promo-banner-wonderlab.png", // Using existing asset
+        image: "/assets/images/page-specialbuatkamu/thumbnail-championswonderlab.png",
         cta: "Lihat Lokasi",
         color: "bg-[#e8f8f7]", // Light teal bg
     },
@@ -24,7 +24,7 @@ const PROGRAMS = [
         id: "ea-online",
         title: "English Academy Online",
         description: "Kursus bahasa Inggris yang menyenangkan sebagai bekal masa depan anak sejak dini",
-        image: "/placeholder", // Placeholder
+        image: "/assets/images/page-specialbuatkamu/thumbnail-englishacademyonline.png",
         cta: "Lihat Lokasi",
         color: "bg-[#e6f4e6]", // Light green bg
         isNew: true, // For sticker
@@ -33,7 +33,7 @@ const PROGRAMS = [
         id: "ea-center",
         title: "English Academy Center",
         description: "Kursus bahasa Inggris yang menyenangkan sebagai bekal masa depan anak sejak dini",
-        image: "/placeholder", // Placeholder
+        image: "/assets/images/page-specialbuatkamu/thumbnail-englishacademycenter.png",
         cta: "Lihat Lokasi",
         color: "bg-[#e6f4e6]", // Light green bg
         isNew: true, // For sticker
@@ -46,11 +46,14 @@ export default function DiscoveryPage() {
     return (
         <div className="bg-[#f7f9fd] flex flex-col min-h-full w-full pb-[80px]">
             {/* Background Decoration */}
-            <div
-                className="absolute h-[250px] left-0 top-0 w-full pointer-events-none z-0 overflow-hidden"
-                style={{ backgroundImage: "linear-gradient(180deg, #1FB0C3 0%, rgba(31, 176, 195, 0) 100%)" }}
-            >
-                {/* Abstract shapes can go here if needed */}
+            <div className="absolute h-[250px] left-0 top-0 w-full pointer-events-none z-0 overflow-hidden">
+                <Image
+                    src="/assets/images/page-specialbuatkamu/background-header-specialuntukkamu.png"
+                    alt="Background Header"
+                    fill
+                    className="object-cover object-top"
+                    priority
+                />
             </div>
 
             <div className="relative z-10 flex flex-col w-full">
@@ -127,15 +130,9 @@ export default function DiscoveryPage() {
                                     </button>
                                 </div>
 
-                                {/* Image/Illustration Placeholder */}
-                                <div className="absolute right-[-10px] bottom-0 w-[140px] h-[100px] bg-gray-200 rounded-tl-[20px]">
-                                    {program.image !== "/placeholder" ? (
-                                        <Image src={program.image} alt={program.title} fill className="object-cover" />
-                                    ) : (
-                                        <div className="w-full h-full flex items-center justify-center text-[10px] text-gray-500 text-center p-2">
-                                            [Asset: {program.title}]
-                                        </div>
-                                    )}
+                                {/* Image/Illustration */}
+                                <div className="absolute right-[-10px] bottom-0 w-[140px] h-[100px] rounded-tl-[20px] overflow-hidden">
+                                    <Image src={program.image} alt={program.title} fill className="object-contain" />
                                 </div>
                             </div>
                         ))}
