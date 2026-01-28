@@ -21,7 +21,7 @@ const CHILDREN_DATA: ChildData[] = [
     {
         id: "liam",
         name: "Liam A.",
-        avatar: "/assets/images/page-specialbuatkamu/thumbnail-championswonderlab.png", // Using asset as placeholder
+        avatar: "/assets/images/page-specialbuatkamu/thumbnail-championswonderlab.png",
         program: "English Academy - Dasher",
         location: "Balikpapan - Jendral Sudirman",
         gradient: "linear-gradient(169.875deg, #2B2A72 0%, #FF4546 100%)",
@@ -41,6 +41,33 @@ const CHILDREN_DATA: ChildData[] = [
             lessonComplete: 8,
             attendance: "90%",
         }
+    }
+];
+
+const LIAM_JOURNAL = [
+    {
+        unit: "Unit D",
+        description: "In this unit, students learned about their taste buds and how our tongues interact with flavours. Structure...",
+        lessonCompleted: "10",
+        finalTest: "85%",
+        status: "active",
+        dotColor: "bg-[#FF7096]"
+    },
+    {
+        unit: "Unit E",
+        description: "In this unit, students learned about how historians excavate historical sites to uncover hidden artifacts....",
+        lessonCompleted: "5",
+        finalTest: "-",
+        status: "active",
+        dotColor: "bg-[#FF7096]"
+    },
+    {
+        unit: "Unit F",
+        description: "In this unit, students learned about Winter Olympics and explored the unique cultures of Inuit peoples wh...",
+        lessonCompleted: "0",
+        finalTest: "-",
+        status: "disabled",
+        dotColor: "bg-[#FF7096]"
     }
 ];
 
@@ -88,20 +115,14 @@ export default function LearningPage() {
         <div className="flex flex-col min-h-full w-full bg-[#F7F9FD] pb-[100px]">
             {/* Header Section */}
             <div className="relative w-full shrink-0">
-                {/* Teal Status Bar area */}
                 <div className="bg-[#1FB0C3] h-[24px] w-full" />
-
-                {/* Main Header with Pattern */}
                 <div className="relative h-[117px] w-full overflow-hidden rounded-bl-[28px] bg-[#34CE9E]">
-                    {/* Gradient Layer */}
                     <div
                         className="absolute inset-0 z-0"
                         style={{
                             backgroundImage: "linear-gradient(90deg, rgba(4, 35, 81, 0.14) 0%, rgba(4, 35, 81, 0.14) 100%), linear-gradient(161.996deg, #7BD7FB 0%, #34CE9E 100%)"
                         }}
                     />
-
-                    {/* Pattern Overlay */}
                     <div className="absolute inset-0 z-1 opacity-40 mix-blend-luminosity">
                         <Image
                             src="/assets/images/page-specialbuatkamu/background-header-specialuntukkamu.png"
@@ -121,24 +142,16 @@ export default function LearningPage() {
                             </div>
                         </div>
 
-                        {/* Child Selector Tabs */}
                         <div className="flex items-end px-[12px] gap-[10px] flex-1 mt-auto">
                             {CHILDREN_DATA.map(child => (
                                 <button
                                     key={child.id}
                                     onClick={() => setSelectedChildId(child.id)}
-                                    className={`flex items-center gap-[8px] px-[12px] py-[8px] rounded-t-[8px] transition-colors ${selectedChildId === child.id
-                                            ? "bg-white"
-                                            : "bg-white/10 text-white"
+                                    className={`flex items-center gap-[8px] px-[12px] py-[8px] rounded-t-[8px] transition-colors ${selectedChildId === child.id ? "bg-white" : "bg-white/10 text-white"
                                         }`}
                                 >
                                     <div className="relative w-[24px] h-[24px] rounded-full overflow-hidden border border-white">
-                                        <Image
-                                            src={child.avatar}
-                                            alt={child.name}
-                                            fill
-                                            className="object-cover"
-                                        />
+                                        <Image src={child.avatar} alt={child.name} fill className="object-cover" />
                                     </div>
                                     <span className={`font-['Inter'] font-bold text-[14px] ${selectedChildId === child.id ? "text-[#2C313A]" : "text-white"}`}>
                                         {child.name}
@@ -153,7 +166,7 @@ export default function LearningPage() {
             {/* Program Card area */}
             <div className="w-full px-[12px] py-[12px] bg-white">
                 <div
-                    className="w-full rounded-[12px] overflow-hidden flex items-center justify-between p-[12px] relative"
+                    className="w-full rounded-[12px] overflow-hidden flex items-center justify-between p-[12px] relative shadow-sm"
                     style={{ backgroundImage: selectedChild.gradient }}
                 >
                     <div className="flex items-center gap-[8px] flex-1">
@@ -271,31 +284,43 @@ export default function LearningPage() {
                     </>
                 ) : (
                     <div className="flex flex-col gap-[12px]">
-                        {/* Journal Cards */}
-                        <div className="bg-[#3A3968] rounded-[12px] p-[16px] text-white flex flex-col gap-[12px] cursor-pointer">
-                            <div className="flex items-center justify-between">
-                                <div className="flex items-center gap-[8px]">
-                                    <div className="w-[12px] h-[12px] bg-[#986CE5] rounded-full" />
-                                    <span className="font-['Inter'] font-bold text-[16px]">Unit A</span>
+                        {/* Journal Cards for Liam */}
+                        {selectedChildId === 'liam' ? (
+                            LIAM_JOURNAL.map((item, index) => (
+                                <div
+                                    key={index}
+                                    className={`${item.status === 'disabled' ? 'bg-[#9BA3AF]' : 'bg-[#3A3968]'} rounded-[12px] p-[16px] text-white flex flex-col gap-[12px] cursor-pointer shadow-md`}
+                                >
+                                    <div className="flex items-center justify-between">
+                                        <div className="flex items-center gap-[8px]">
+                                            <div className={`w-[14px] h-[14px] ${item.dotColor} rounded-full`} />
+                                            <span className="font-['Inter'] font-bold text-[16px]">{item.unit}</span>
+                                            <div className="w-[14px] h-[14px] border border-white/40 rounded-full flex items-center justify-center text-[8px] opacity-60">i</div>
+                                        </div>
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                                            <path d="M9 18l6-6-6-6" />
+                                        </svg>
+                                    </div>
+                                    <p className="font-['Inter'] text-[13px] opacity-90 leading-relaxed line-clamp-2">
+                                        {item.description}
+                                    </p>
+                                    <div className="flex gap-[12px] mt-[4px]">
+                                        <div className="flex-1 bg-[#F5F7FF] rounded-[10px] p-[10px] flex flex-col items-start min-h-[58px]">
+                                            <p className="text-[10px] text-[#5E677B] font-bold mb-[2px]">Lesson Completed</p>
+                                            <p className="font-['Inter'] font-bold text-[18px] text-[#2C313A] mt-auto">{item.lessonCompleted}</p>
+                                        </div>
+                                        <div className="flex-1 bg-[#F5F7FF] rounded-[10px] p-[10px] flex flex-col items-start min-h-[58px]">
+                                            <p className="text-[10px] text-[#5E677B] font-bold mb-[2px]">Final Test Score</p>
+                                            <p className="font-['Inter'] font-bold text-[18px] text-[#2C313A] mt-auto">{item.finalTest}</p>
+                                        </div>
+                                    </div>
                                 </div>
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                                    <path d="M9 18l6-6-6-6" />
-                                </svg>
+                            ))
+                        ) : (
+                            <div className="w-full py-[40px] flex flex-col items-center justify-center opacity-60">
+                                <p className="text-[#2C313A] font-bold">No Journal available yet</p>
                             </div>
-                            <p className="font-['Inter'] text-[14px] opacity-90">
-                                In this unit, students learned about their taste buds and how our tongues interact with flavours.
-                            </p>
-                            <div className="flex gap-[12px]">
-                                <div className="flex-1 bg-white rounded-[8px] p-[12px] text-center">
-                                    <p className="font-['Inter'] font-bold text-[24px] text-[#2C313A]">8</p>
-                                    <p className="text-[12px] text-[#5E677B]">Lesson Completed</p>
-                                </div>
-                                <div className="flex-1 bg-white rounded-[8px] p-[12px] text-center">
-                                    <p className="font-['Inter'] font-bold text-[24px] text-[#2C313A]">85%</p>
-                                    <p className="text-[12px] text-[#5E677B]">Final Test</p>
-                                </div>
-                            </div>
-                        </div>
+                        )}
                     </div>
                 )}
             </div>
