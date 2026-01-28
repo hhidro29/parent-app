@@ -163,7 +163,7 @@ function SilverBadge() {
 
 function UserCapsule() {
   return (
-    <div className="bg-white rounded-full p-[8px] flex items-center justify-between w-full shadow-[0px_4px_12px_rgba(0,0,0,0.08)] z-10">
+    <Link href="/reward" className="bg-white rounded-full p-[8px] flex items-center justify-between w-full shadow-[0px_4px_12px_rgba(0,0,0,0.08)] z-10 cursor-pointer">
       <div className="flex items-center gap-[10px]">
         {/* Avatar */}
         <div className="relative size-[36px] rounded-full overflow-hidden">
@@ -175,7 +175,7 @@ function UserCapsule() {
         </p>
       </div>
       <SilverBadge />
-    </div>
+    </Link>
   );
 }
 
