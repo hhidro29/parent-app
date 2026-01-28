@@ -21,7 +21,7 @@ const CHILDREN_DATA: ChildData[] = [
     {
         id: "liam",
         name: "Liam A.",
-        avatar: "/assets/images/page-specialbuatkamu/thumbnail-championswonderlab.png",
+        avatar: "/assets/images/profile-liam.png",
         program: "English Academy - Dasher",
         location: "Balikpapan - Jendral Sudirman",
         gradient: "linear-gradient(169.875deg, #2B2A72 0%, #FF4546 100%)",
@@ -33,7 +33,7 @@ const CHILDREN_DATA: ChildData[] = [
     {
         id: "dora",
         name: "Dora D.",
-        avatar: "/assets/images/avatar-dora-session.png",
+        avatar: "/assets/images/profile-dora.png",
         program: "Champions Wonderlab",
         location: "Balikpapan - Jendral Sudirman",
         gradient: "linear-gradient(169.875deg, #E8F8F7 0%, #FFF9EE 100%)",
@@ -115,7 +115,7 @@ export default function LearningPage() {
         <div className="flex flex-col min-h-full w-full bg-[#F7F9FD] pb-[100px]">
             {/* Header Section */}
             <div className="relative w-full shrink-0">
-                <div className="bg-[#1FB0C3] h-[24px] w-full" />
+
                 <div className="relative h-[117px] w-full overflow-hidden rounded-bl-[28px] bg-[#34CE9E]">
                     <div
                         className="absolute inset-0 z-0"
@@ -134,7 +134,7 @@ export default function LearningPage() {
 
                     <div className="relative z-10 flex flex-col w-full h-full">
                         <div className="flex items-center justify-between px-[12px] py-[12px]">
-                            <h1 className="font-['Inter'] font-bold text-[16px] text-white">Child Learning</h1>
+                            <h1 className="font-['Inter'] font-bold text-[20px] text-white">Child Learning</h1>
                             <div className="w-[24px] h-[24px] bg-white rounded-full flex items-center justify-center">
                                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#2C313A" strokeWidth="3" strokeLinecap="round">
                                     <path d="M12 5V19M5 12H19" />
@@ -166,27 +166,41 @@ export default function LearningPage() {
             {/* Program Card area */}
             <div className="w-full px-[12px] py-[12px] bg-white">
                 <div
-                    className="w-full rounded-[12px] overflow-hidden flex items-center justify-between p-[12px] relative shadow-sm"
+                    className="w-full h-[60px] rounded-[16px] overflow-hidden flex items-center justify-between relative shadow-sm"
                     style={{ backgroundImage: selectedChild.gradient }}
                 >
-                    <div className="flex items-center gap-[8px] flex-1">
-                        <div className="w-[36px] h-[36px] bg-white/40 rounded-full flex items-center justify-center shrink-0">
-                            <div className="bg-white rounded-full w-[24px] h-[24px] flex items-center justify-center overflow-hidden">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#2C313A" strokeWidth="2.5">
-                                    <path d="M21 15C21 15.5304 20.7893 16.0391 20.4142 16.4142C20.0391 16.7893 19.5304 17 19 17H7L3 21V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H19C19.5304 3 20.0391 3.21071 20.4142 3.58579C20.7893 3.96086 21 4.46957 21 5V15Z" />
-                                </svg>
-                            </div>
+                    <div className="flex items-center gap-[12px] flex-1 pl-[12px]">
+                        {/* Logo */}
+                        <div className="w-[36px] h-[36px] relative shrink-0">
+                            {selectedChild.id === 'liam' ? (
+                                <Image
+                                    src="/assets/images/iconlogo-englishacademy.png"
+                                    alt="Program Logo"
+                                    fill
+                                    className="object-contain"
+                                />
+                            ) : (
+                                <Image
+                                    src="/assets/images/iconlogo-championswonderlab.png"
+                                    alt="Program Logo"
+                                    fill
+                                    className="object-contain"
+                                />
+                            )}
                         </div>
+
+                        {/* Text */}
                         <div className={`flex flex-col ${selectedChildId === 'liam' ? 'text-white' : 'text-[#2C313A]'}`}>
-                            <span className="font-['Inter'] font-semibold text-[12px] leading-tight">{selectedChild.program}</span>
-                            <span className={`font-['Inter'] font-normal text-[12px] opacity-90`}>{selectedChild.location}</span>
+                            <span className="font-['Inter'] font-bold text-[14px] leading-tight">{selectedChild.program}</span>
+                            <span className="font-['Inter'] font-normal text-[12px] opacity-90">{selectedChild.location}</span>
                         </div>
                     </div>
 
-                    <button className="relative shrink-0 size-[40px] bg-black/10 rounded-full flex items-center justify-center">
-                        <div className="relative size-[20px] bg-[#F2F5FA] rounded-full flex items-center justify-center">
-                            <svg className="size-[10px]" viewBox="0 0 24 24" fill="none">
-                                <path d="M7 10L12 15L17 10H7Z" fill="#2C313A" />
+                    {/* Right Button */}
+                    <button className={`w-[60px] h-full rounded-tl-[15px] flex items-center justify-center shrink-0 transition-colors ${selectedChildId === 'liam' ? 'bg-[#0C0C0C]/50 active:bg-[#0C0C0C]/70' : 'bg-[#0C0C0C]/10 active:bg-[#0C0C0C]/20'}`}>
+                        <div className="size-[24px] bg-white rounded-full flex items-center justify-center">
+                            <svg className="size-[12px]" viewBox="0 0 24 24" fill="none" stroke="#2C313A" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                                <path d="M6 9l6 6 6-6" />
                             </svg>
                         </div>
                     </button>
@@ -250,7 +264,7 @@ export default function LearningPage() {
                                                 <span className="font-['Inter'] font-bold text-[12px] leading-[18px]">{report.status}</span>
                                             </div>
                                             <Link
-                                                href="/learning/report"
+                                                href={`/learning/report/${report.id}`}
                                                 className="bg-[#F26D0F] text-white font-bold text-[12px] px-[12px] h-[28px] rounded-full active:scale-95 transition-transform flex items-center justify-center"
                                             >
                                                 See Report

@@ -39,7 +39,7 @@ export default function JournalDetailPage() {
                     backgroundImage: `linear-gradient(90deg, rgba(152, 108, 229, 0.9) 0%, rgba(152, 108, 229, 0.7) 100%)`,
                 }}
             >
-                <div className="h-[24px] w-full" style={{ backgroundColor: unitInfo.color }} />
+
                 <div className="flex items-center p-[12px] w-full">
                     <button
                         onClick={() => router.back()}
@@ -49,7 +49,7 @@ export default function JournalDetailPage() {
                             <path d={svgPaths.back} fill="#2C313A" />
                         </svg>
                     </button>
-                    <p className="flex-1 font-['Inter'] font-bold text-[16px] leading-[20px] text-center text-white">
+                    <p className="flex-1 font-['Inter'] font-bold text-[20px] leading-[20px] text-center text-white">
                         {unitInfo.name} Journal
                     </p>
                     <div className="w-[34px]" />

@@ -11,7 +11,7 @@ export default function AuthPage() {
 
     return (
         <div className="bg-[#f3fbfc] flex flex-col min-h-full w-full">
-            <div className="bg-[#1fb0c3] h-[24px] w-full" />
+
 
             {/* Header */}
             <div className="flex items-center p-[12px] w-full">
@@ -23,7 +23,7 @@ export default function AuthPage() {
                         <path d={svgPaths.back} fill="#2C313A" />
                     </svg>
                 </button>
-                <p className="flex-1 font-['Inter'] font-bold text-[16px] leading-[20px] text-center text-[#2c313a]">
+                <p className="flex-1 font-['Inter'] font-bold text-[20px] leading-[20px] text-center text-[#2c313a]">
                     Hubungkan Akun Anak
                 </p>
                 <div className="w-[34px]" />

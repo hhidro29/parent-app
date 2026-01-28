@@ -8,7 +8,7 @@ export default function ChatPage() {
         <div className="flex flex-col min-h-screen w-full bg-[#F7F9FD] pb-[100px]">
             {/* Header Section */}
             <div className="relative w-full shrink-0">
-                <div className="bg-[#1FB0C3] h-[24px] w-full" />
+
 
                 {/* Main Header with Pattern */}
                 <div className="relative h-[87px] w-full overflow-hidden bg-[#34CE9E]">
@@ -31,7 +31,7 @@ export default function ChatPage() {
                     </div>
 
                     <div className="relative z-10 flex items-center justify-between px-[12px] h-full pt-[24px]">
-                        <h1 className="font-['Inter'] font-bold text-[24px] text-white tracking-[-0.12px]">Chat</h1>
+                        <h1 className="font-['Inter'] font-bold text-[20px] text-white tracking-[-0.12px]">Chat</h1>
                         <div className="w-[32px] h-[32px] bg-white rounded-full flex items-center justify-center">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#20B0C3" strokeWidth="3" strokeLinecap="round">
                                 <path d="M12 5V19M5 12H19" />

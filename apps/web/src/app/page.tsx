@@ -131,7 +131,7 @@ function HeaderSection() {
   return (
     <div className="content-stretch flex flex-col gap-[10px] items-start p-[12px] relative w-full">
       <HeaderBackground />
-      <p className="font-['Inter'] font-bold leading-[24px] not-italic relative shrink-0 text-[16px] text-white z-10">Good Morning</p>
+      <p className="font-['Inter'] font-bold leading-[24px] not-italic relative shrink-0 text-[20px] text-white z-10">Good Morning</p>
       <QuickActions />
     </div>
   );
@@ -288,7 +288,7 @@ function SessionReportCard() {
         <div className="content-stretch flex gap-[12px] items-center relative shrink-0 w-full">
           <div className="relative shrink-0 size-[28px] rounded-full overflow-hidden">
             <Image
-              src="/assets/images/avatar-dora-session.png"
+              src="/assets/images/profile-dora.png"
               alt="Dora Avatar"
               fill
               className="object-cover"
@@ -331,7 +331,7 @@ function StorySection() {
 export default function HomePage() {
   return (
     <div className="content-stretch flex flex-col items-start w-full">
-      <div className="bg-[#1fb0c3] h-[24px] shrink-0 w-full" />
+
       <HeaderSection />
       <StorySection />
     </div>

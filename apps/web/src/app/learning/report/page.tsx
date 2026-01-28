@@ -63,7 +63,7 @@ export default function ClassReportListPage() {
                     backgroundImage: "linear-gradient(169.875deg, #2B2A72 0%, #FF4546 100%)",
                 }}
             >
-                <div className="bg-[#1fb0c3] h-[24px] w-full" />
+
                 <div className="flex items-center p-[12px] w-full">
                     <button
                         onClick={() => router.back()}
@@ -73,7 +73,7 @@ export default function ClassReportListPage() {
                             <path d={svgPaths.back} fill="#2C313A" />
                         </svg>
                     </button>
-                    <p className="flex-1 font-['Inter'] font-bold text-[16px] leading-[20px] text-center text-white">
+                    <p className="flex-1 font-['Inter'] font-bold text-[20px] leading-[20px] text-center text-white">
                         Class Report
                     </p>
                     <div className="w-[34px]" />
