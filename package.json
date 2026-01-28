@@ -1,0 +1,12 @@
+{
+    "name": "parentapp-monorepo",
+    "private": true,
+    "workspaces": [
+        "apps/*",
+        "packages/*"
+    ],
+    "overrides": {
+        "@types/react": "^19",
+        "@types/react-dom": "^19"
+    }
+}
