@@ -69,7 +69,7 @@ export default function RewardPage() {
 
                 {/* User Tier Card Carousel */}
                 <div className="w-full relative mt-[12px]">
-                    <div className="bg-white/20 backdrop-blur-sm rounded-[20px] overflow-hidden pb-[12px]">
+                    <div className="bg-white/20 backdrop-blur-sm rounded-[20px] overflow-hidden">
                         {/* Top Section: Profile */}
                         <div className="p-[12px] flex items-center justify-between bg-[#59606D] backdrop-blur-md">
                             <div className="flex items-center gap-[12px]">
@@ -88,7 +88,7 @@ export default function RewardPage() {
 
                         {/* Bottom Section: Progress */}
                         {/* Measurement: Height 110px */}
-                        <div className="bg-[#6A7181]/40 h-[110px] p-[12px] flex flex-col justify-between relative">
+                        <div className="h-[110px] p-[12px] flex flex-col justify-between relative bg-[#5F6775]">
                             {/* Points Text */}
                             <div className="flex justify-between items-end text-white mb-[8px]">
                                 <span className="text-[14px]">1.000 Point</span>
@@ -107,7 +107,10 @@ export default function RewardPage() {
                                 </p>
 
                                 {/* Measurement: Height 32px */}
-                                <button className="bg-white text-[#2C313A] text-[12px] font-bold px-[12px] h-[32px] rounded-full flex items-center gap-[4px] hover:bg-gray-50 transition-colors shadow-sm">
+                                <button
+                                    onClick={() => router.push('/reward/how-to-level-up')}
+                                    className="bg-white text-[#2C313A] text-[12px] font-bold px-[12px] h-[32px] rounded-full flex items-center gap-[4px] hover:bg-gray-50 transition-colors shadow-sm"
+                                >
                                     Cek Caranya
                                     <svg className="size-[14px]" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                                         <path d="M7 5L12 10L7 15" />
