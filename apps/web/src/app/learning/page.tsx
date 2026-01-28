@@ -4,6 +4,15 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
+import {
+    Drawer,
+    DrawerClose,
+    DrawerContent,
+    DrawerHeader,
+    DrawerTitle,
+    DrawerTrigger,
+} from "@/components/ui/drawer";
+
 interface ChildData {
     id: string;
     name: string;
@@ -43,6 +52,34 @@ const CHILDREN_DATA: ChildData[] = [
         }
     }
 ];
+
+const PACKAGES: Record<string, { id: string; name: string; location: string; icon: string | null; selected: boolean }[]> = {
+    liam: [
+        {
+            id: "ea",
+            name: "English Academy · Dasher",
+            location: "Balikpapan - Jendral Sudirman",
+            icon: "/assets/images/iconlogo-englishacademy.png",
+            selected: true
+        },
+        {
+            id: "ba",
+            name: "Brain Academy Center",
+            location: "Balikpapan - Jendral Sudirman",
+            icon: null,
+            selected: false
+        }
+    ],
+    dora: [
+        {
+            id: "cw",
+            name: "Champions Wonderlab",
+            location: "Balikpapan - Jendral Sudirman",
+            icon: "/assets/images/iconlogo-championswonderlab.png",
+            selected: true
+        }
+    ]
+};
 
 const LIAM_JOURNAL = [
     {
@@ -199,46 +236,100 @@ export default function LearningPage() {
 
             {/* Program Card area */}
             <div className="w-full px-[12px] py-[12px] bg-white">
-                <div
-                    className="w-full h-[60px] rounded-[16px] overflow-hidden flex items-center justify-between relative shadow-sm"
-                    style={{ backgroundImage: selectedChild.gradient }}
-                >
-                    <div className="flex items-center gap-[12px] flex-1 pl-[12px]">
-                        {/* Logo */}
-                        <div className="w-[36px] h-[36px] relative shrink-0">
-                            {selectedChild.id === 'liam' ? (
-                                <Image
-                                    src="/assets/images/iconlogo-englishacademy.png"
-                                    alt="Program Logo"
-                                    fill
-                                    className="object-contain"
-                                />
-                            ) : (
-                                <Image
-                                    src="/assets/images/iconlogo-championswonderlab.png"
-                                    alt="Program Logo"
-                                    fill
-                                    className="object-contain"
-                                />
-                            )}
-                        </div>
+                <Drawer>
+                    <DrawerTrigger asChild>
+                        <div
+                            className="w-full h-[60px] rounded-[16px] overflow-hidden flex items-center justify-between relative shadow-sm cursor-pointer active:scale-[0.99] transition-transform"
+                            style={{ backgroundImage: selectedChild.gradient }}
+                        >
+                            <div className="flex items-center gap-[12px] flex-1 pl-[12px]">
+                                {/* Logo */}
+                                <div className="w-[36px] h-[36px] relative shrink-0">
+                                    {selectedChild.id === 'liam' ? (
+                                        <Image
+                                            src="/assets/images/iconlogo-englishacademy.png"
+                                            alt="Program Logo"
+                                            fill
+                                            className="object-contain"
+                                        />
+                                    ) : (
+                                        <Image
+                                            src="/assets/images/iconlogo-championswonderlab.png"
+                                            alt="Program Logo"
+                                            fill
+                                            className="object-contain"
+                                        />
+                                    )}
+                                </div>
 
-                        {/* Text */}
-                        <div className={`flex flex-col ${selectedChildId === 'liam' ? 'text-white' : 'text-[#2C313A]'}`}>
-                            <span className="font-['Inter'] font-bold text-[14px] leading-tight">{selectedChild.program}</span>
-                            <span className="font-['Inter'] font-normal text-[12px] opacity-90">{selectedChild.location}</span>
-                        </div>
-                    </div>
+                                {/* Text */}
+                                <div className={`flex flex-col ${selectedChildId === 'liam' ? 'text-white' : 'text-[#2C313A]'}`}>
+                                    <span className="font-['Inter'] font-bold text-[14px] leading-tight">{selectedChild.program}</span>
+                                    <span className="font-['Inter'] font-normal text-[12px] opacity-90">{selectedChild.location}</span>
+                                </div>
+                            </div>
 
-                    {/* Right Button */}
-                    <button className={`w-[60px] h-full rounded-tl-[15px] flex items-center justify-center shrink-0 transition-colors ${selectedChildId === 'liam' ? 'bg-[#0C0C0C]/50 active:bg-[#0C0C0C]/70' : 'bg-[#0C0C0C]/10 active:bg-[#0C0C0C]/20'}`}>
-                        <div className="size-[24px] bg-white rounded-full flex items-center justify-center">
-                            <svg className="size-[12px]" viewBox="0 0 24 24" fill="none" stroke="#2C313A" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                                <path d="M6 9l6 6 6-6" />
-                            </svg>
+                            {/* Right Button */}
+                            <button className={`w-[60px] h-full rounded-tl-[15px] flex items-center justify-center shrink-0 transition-colors ${selectedChildId === 'liam' ? 'bg-[#0C0C0C]/50' : 'bg-[#0C0C0C]/10'}`}>
+                                <div className="size-[24px] bg-white rounded-full flex items-center justify-center">
+                                    <svg className="size-[12px]" viewBox="0 0 24 24" fill="none" stroke="#2C313A" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                                        <path d="M6 9l6 6 6-6" />
+                                    </svg>
+                                </div>
+                            </button>
                         </div>
-                    </button>
-                </div>
+                    </DrawerTrigger>
+                    <DrawerContent className="rounded-t-[20px]">
+                        <div className="mx-auto w-full max-w-sm">
+                            <DrawerHeader className="flex items-center justify-between px-[20px] py-[16px]">
+                                <DrawerTitle className="font-['Inter'] font-bold text-[16px] text-[#2C313A]">
+                                    Pilih Paket · {selectedChild.name}
+                                </DrawerTitle>
+                            </DrawerHeader>
+                            <div className="p-[20px] pt-0 flex flex-col gap-[12px]">
+                                {PACKAGES[selectedChildId]?.map((pkg) => (
+                                    <div
+                                        key={pkg.id}
+                                        className={`w-full p-[12px] rounded-[16px] border flex items-center gap-[12px] bg-white transition-colors ${pkg.selected
+                                            ? "border-[#E2E8F0] shadow-sm"
+                                            : "border-[#E2E8F0]"
+                                            }`}
+                                    >
+                                        <div className={`w-[36px] h-[36px] rounded-full flex items-center justify-center shrink-0 ${pkg.icon ? "bg-transparent" : "bg-[#F1F5F9]"
+                                            }`}>
+                                            {pkg.icon ? (
+                                                <div className="relative w-full h-full">
+                                                    <Image
+                                                        src={pkg.icon}
+                                                        alt={pkg.name}
+                                                        fill
+                                                        className="object-contain"
+                                                    />
+                                                </div>
+                                            ) : (
+                                                <div className="w-full h-full rounded-full bg-[#E2E8F0]" />
+                                            )}
+                                        </div>
+                                        <div className="flex flex-col">
+                                            <span className="font-['Inter'] font-bold text-[13px] text-[#2C313A]">
+                                                {pkg.name}
+                                            </span>
+                                            <span className="font-['Inter'] font-normal text-[12px] text-[#5E677B]">
+                                                {pkg.location}
+                                            </span>
+                                        </div>
+                                    </div>
+                                ))}
+
+                                <DrawerClose asChild>
+                                    <button className="w-full py-[12px] rounded-full bg-[#F1F5F9] font-['Inter'] font-bold text-[14px] text-[#5E677B] mt-[8px]">
+                                        Tutup
+                                    </button>
+                                </DrawerClose>
+                            </div>
+                        </div>
+                    </DrawerContent>
+                </Drawer>
             </div>
 
             {/* Stats Section */}
