@@ -76,14 +76,14 @@ export default function BottomNavigation() {
     if (shouldHide) return null;
 
     return (
-        <div className="absolute bg-white bottom-0 flex items-center justify-around left-0 px-[12px] py-[8px] w-full z-50">
+        <div className="bg-white shrink-0 flex items-center justify-around px-[12px] py-[8px] w-full z-50 border-t border-slate-100">
             <Link
                 href="/"
                 className="flex flex-1 flex-col gap-[4px] items-center justify-center"
             >
                 <HomeIcon active={isHome} />
                 <p
-                    className={`font-['Inter'] leading-[18px] text-[12px] ${isHome ? "font-semibold text-[#20a4b0]" : "font-normal text-[#959dac]"
+                    className={`font-['Inter'] leading-[18px] text-[12px] ${isHome ? "font-semibold text-[#13939e]" : "font-normal text-[#959dac]"
                         }`}
                 >
                     Home
@@ -96,7 +96,7 @@ export default function BottomNavigation() {
             >
                 <LearningIcon active={isLearning} />
                 <p
-                    className={`font-['Inter'] leading-[18px] text-[12px] ${isLearning ? "font-semibold text-[#20a4b0]" : "font-normal text-[#959dac]"
+                    className={`font-['Inter'] leading-[18px] text-[12px] ${isLearning ? "font-semibold text-[#13939e]" : "font-normal text-[#959dac]"
                         }`}
                 >
                     Learning
@@ -109,7 +109,7 @@ export default function BottomNavigation() {
             >
                 <ChatIcon active={isChat} />
                 <p
-                    className={`font-['Inter'] leading-[18px] text-[12px] ${isChat ? "font-semibold text-[#20a4b0]" : "font-normal text-[#959dac]"
+                    className={`font-['Inter'] leading-[18px] text-[12px] ${isChat ? "font-semibold text-[#13939e]" : "font-normal text-[#959dac]"
                         }`}
                 >
                     Chat

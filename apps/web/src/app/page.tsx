@@ -66,14 +66,14 @@ function CloseIcon() {
 
 function HeaderBackground() {
   return (
-    <div className="absolute h-[130px] left-0 overflow-clip top-0 w-full">
-      <div
-        className="absolute h-[130px] left-0 rounded-bl-[28px] top-0 w-full"
-        style={{ backgroundImage: "linear-gradient(90deg, rgba(4, 35, 81, 0.14) 0%, rgba(4, 35, 81, 0.14) 100%), linear-gradient(160.145deg, rgb(123, 215, 251) 0%, rgb(52, 206, 158) 100%)" }}
+    <div className="absolute h-[130px] left-0 overflow-clip top-0 w-full rounded-bl-[28px]">
+      <Image
+        src="/assets/images/header-bg-clean.png"
+        alt="Header Background"
+        fill
+        className="object-cover object-center"
+        priority
       />
-      <div className="absolute h-[273px] left-[-25px] mix-blend-luminosity top-[-4px] w-[calc(100%+50px)] opacity-40">
-        <div className="absolute inset-0 bg-[url('/assets/pattern.svg')] bg-repeat opacity-40" />
-      </div>
     </div>
   );
 }
@@ -172,18 +172,24 @@ function PromoCard() {
         </div>
 
         {/* Promo Image */}
-        <div className="h-[110px] overflow-hidden relative rounded-[12px] shrink-0 w-full bg-gradient-to-r from-[#b8eff3]/85 to-[#34CE9E]">
+        <div className="h-[133px] overflow-hidden relative rounded-[12px] shrink-0 w-full bg-gradient-to-r from-[#b8eff3]/85 to-[#34CE9E]">
+          <Image
+            src="/assets/images/promo-banner-wonderlab.png"
+            alt="Champions Wonderlab"
+            fill
+            className="object-cover object-right"
+          />
           <div className="absolute inset-0 flex flex-col justify-between p-[12px]">
             <div className="flex flex-col gap-[2px] max-w-[55%]">
-              <p className="font-['Inter'] font-bold leading-[18px] text-[#2c313a] text-[12px]">
+              <p className="font-['Inter'] font-bold leading-[18px] text-[#2c313a] text-[14px]">
                 Champions Wonderlab
               </p>
-              <p className="font-['Inter'] font-normal leading-[13px] text-[#2c313a] text-[9px]">
+              <p className="font-['Inter'] font-normal leading-[16px] text-[#2c313a] text-[10px]">
                 Program Belajar dan Stimulasi Anak Usia Dini Terinspirasi dari Kurikulum Singapura
               </p>
             </div>
             <div>
-              <button className="bg-[#f26d0f] font-['Inter'] font-bold leading-[14px] px-[10px] py-[4px] rounded-full text-[10px] text-white hover:bg-[#d96010] transition-colors">
+              <button className="bg-[#f26d0f] font-['Inter'] font-bold leading-[18px] px-[12px] py-[4px] rounded-full text-[12px] text-white hover:bg-[#d96010] transition-colors">
                 Lihat Lokasi
               </button>
             </div>
@@ -213,7 +219,14 @@ function ClassReportCard() {
       <div className="content-stretch flex flex-col gap-[12px] items-start p-[12px] relative w-full">
         {/* Header */}
         <div className="content-stretch flex gap-[8px] items-center relative shrink-0 w-full">
-          <div className="relative shrink-0 size-[28px] rounded-full overflow-hidden bg-gradient-to-br from-[#7BD7FB] to-[#34CE9E]" />
+          <div className="relative shrink-0 size-[28px] rounded-full overflow-hidden">
+            <Image
+              src="/assets/images/avatar-class-report.png"
+              alt="Class Report Avatar"
+              fill
+              className="object-cover"
+            />
+          </div>
           <div className="content-stretch flex flex-[1_0_0] flex-col gap-[4px] items-start min-h-px min-w-px relative">
             <p className="font-['Inter'] font-normal leading-[normal] not-italic relative shrink-0 text-[12px] text-black">4 hours ago</p>
             <div className="content-stretch flex gap-[4px] items-start relative shrink-0 w-full">
@@ -222,9 +235,14 @@ function ClassReportCard() {
           </div>
         </div>
 
-        {/* Image placeholder */}
-        <div className="h-[120px] w-full rounded-[8px] bg-gradient-to-br from-[#E8F8F7] to-[#FFF9EE] flex items-center justify-center">
-          <p className="text-[#5e677b] text-[14px]">📚 Class Report Image</p>
+        {/* Image */}
+        <div className="h-[120px] w-full rounded-[8px] overflow-hidden relative">
+          <Image
+            src="/assets/images/promo-banner-discovering-me.png"
+            alt="Discovering Me - This Is Me!"
+            fill
+            className="object-cover"
+          />
         </div>
 
         {/* Content */}
@@ -270,7 +288,14 @@ function SessionReportCard() {
       <div aria-hidden="true" className="absolute border border-[#cfd3db] border-solid inset-0 pointer-events-none rounded-[12px]" />
       <div className="content-stretch flex flex-col gap-[12px] items-start p-[12px] relative w-full">
         <div className="content-stretch flex gap-[12px] items-center relative shrink-0 w-full">
-          <div className="relative shrink-0 size-[28px] rounded-full overflow-hidden bg-gradient-to-br from-[#FF6B6B] to-[#4ECDC4]" />
+          <div className="relative shrink-0 size-[28px] rounded-full overflow-hidden">
+            <Image
+              src="/assets/images/avatar-dora-session.png"
+              alt="Dora Avatar"
+              fill
+              className="object-cover"
+            />
+          </div>
           <div className="content-stretch flex flex-[1_0_0] flex-col gap-[4px] items-start min-h-px min-w-px not-italic relative text-black">
             <div className="content-stretch flex font-['Inter'] font-normal gap-[4px] items-start leading-[normal] relative shrink-0 text-[12px] w-full">
               <p className="flex-[1_0_0] min-h-px min-w-px relative">Dora A · English Academy</p>
