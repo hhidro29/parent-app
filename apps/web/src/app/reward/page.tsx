@@ -69,7 +69,7 @@ export default function RewardPage() {
 
                 {/* User Tier Card Carousel */}
                 <div className="w-full relative mt-[12px]">
-                    <div className="bg-white/20 backdrop-blur-sm rounded-[20px] overflow-hidden pb-[12px]">
+                    <div className="bg-white/20 backdrop-blur-sm rounded-[20px] overflow-hidden">
                         {/* Top Section: Profile */}
                         <div className="p-[12px] flex items-center justify-between bg-[#59606D] backdrop-blur-md">
                             <div className="flex items-center gap-[12px]">
@@ -88,7 +88,7 @@ export default function RewardPage() {
 
                         {/* Bottom Section: Progress */}
                         {/* Measurement: Height 110px */}
-                        <div className="h-[110px] p-[12px] flex flex-col justify-between relative">
+                        <div className="h-[110px] p-[12px] flex flex-col justify-between relative bg-[#5F6775]">
                             {/* Points Text */}
                             <div className="flex justify-between items-end text-white mb-[8px]">
                                 <span className="text-[14px]">1.000 Point</span>
