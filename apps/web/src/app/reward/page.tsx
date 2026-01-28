@@ -107,7 +107,10 @@ export default function RewardPage() {
                                 </p>
 
                                 {/* Measurement: Height 32px */}
-                                <button className="bg-white text-[#2C313A] text-[12px] font-bold px-[12px] h-[32px] rounded-full flex items-center gap-[4px] hover:bg-gray-50 transition-colors shadow-sm">
+                                <button
+                                    onClick={() => router.push('/reward/how-to-level-up')}
+                                    className="bg-white text-[#2C313A] text-[12px] font-bold px-[12px] h-[32px] rounded-full flex items-center gap-[4px] hover:bg-gray-50 transition-colors shadow-sm"
+                                >
                                     Cek Caranya
                                     <svg className="size-[14px]" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                                         <path d="M7 5L12 10L7 15" />
