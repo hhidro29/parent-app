@@ -55,9 +55,14 @@ export default function DiscoveryPage() {
 
             <div className="relative z-10 flex flex-col w-full">
                 {/* Header Title */}
-                <div className="flex items-center justify-between px-[20px] pt-[20px] pb-[10px]">
+                <div className="flex items-center gap-[12px] px-[20px] pt-[20px] pb-[10px]">
+                    <Link href="/" className="shrink-0 text-white">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M19 12H5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                            <path d="M12 19L5 12L12 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                    </Link>
                     <h1 className="font-['Inter'] font-bold text-[20px] text-white">Spesial Buat Kamu</h1>
-                    {/* Back button or other controls if needed */}
                 </div>
 
                 {/* Carousel / Banner Section */}
@@ -100,8 +105,8 @@ export default function DiscoveryPage() {
                                 key={filter}
                                 onClick={() => setActiveFilter(filter)}
                                 className={`px-[16px] py-[8px] rounded-full text-[12px] font-semibold shrink-0 transition-colors ${activeFilter === filter
-                                        ? "bg-[#1FB0C3] text-white"
-                                        : "bg-[#EDEFF3] text-[#2C313A]"
+                                    ? "bg-[#1FB0C3] text-white"
+                                    : "bg-[#EDEFF3] text-[#2C313A]"
                                     }`}
                             >
                                 {filter}
