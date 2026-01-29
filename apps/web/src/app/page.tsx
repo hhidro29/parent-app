@@ -173,7 +173,7 @@ function UserCapsule() {
         </div>
         {/* Greeting */}
         <p className="font-['Inter'] font-bold text-[#2C313A] text-[15px] leading-tight text-nowrap">
-          Halo, Liam Parent
+          Halo, Liam's Parent
         </p>
       </div>
       <SilverBadge />

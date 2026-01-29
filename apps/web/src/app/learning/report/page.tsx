@@ -8,7 +8,7 @@ const svgPaths = {
 };
 
 const reports = [
-    { id: '1', unit: 'Unit J · Writing Skills', title: 'Essay Structure', date: '5 Hour ago', status: 'present' as const },
+    { id: '1', unit: 'Unit J · Writing Skills', title: 'Essay Structure', date: '5 Hours ago', status: 'present' as const },
     { id: '2', unit: 'Unit I · Cultural Insights', title: 'Festivals and Traditions', date: '25 Nov 2025', status: 'present' as const },
     { id: '3', unit: 'Unit H · Listening Comprehension', title: 'Daily Conversations', date: '25 Nov 2025', status: 'present' as const },
     { id: '4', unit: 'Unit G · Pronunciation Practice', title: 'Common Phonemes', date: '25 Nov 2025', status: 'present' as const },

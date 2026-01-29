@@ -15,7 +15,7 @@ const PROGRAMS = [
     {
         id: "wonderlab",
         title: "Champions Wonderlab",
-        description: "Program Belajar and Stimulasi Anak Usia Dini Terinspirasi dari Kurikulum Singapura",
+        description: "Program Belajar dan Stimulasi Anak Usia Dini Terinspirasi dari Kurikulum Singapura",
         image: "/assets/images/page-specialbuatkamu/thumbnail-championswonderlab.png",
         cta: "Lihat Lokasi",
         color: "bg-[#e8f8f7]", // Light teal
@@ -32,7 +32,7 @@ const PROGRAMS = [
     {
         id: "ea-center",
         title: "English Academy Center",
-        description: "Kursus bahasa Inggris yang menyenangkan sebagai bekal masa depan anak since dini",
+        description: "Kursus bahasa Inggris yang menyenangkan sebagai bekal masa depan anak sejak dini",
         image: "/assets/images/page-specialbuatkamu/thumbnail-englishacademycenter.png",
         cta: "Lihat Lokasi",
         color: "bg-[#e6f4e6]", // Light green
