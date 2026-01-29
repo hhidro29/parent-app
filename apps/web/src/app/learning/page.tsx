@@ -31,7 +31,7 @@ const CHILDREN_DATA: ChildData[] = [
         id: "liam",
         name: "Liam A.",
         avatar: "/assets/images/profile-liam.png",
-        program: "English Academy - Dasher",
+        program: "English Academy - Runner",
         location: "Balikpapan - Jendral Sudirman",
         gradient: "linear-gradient(169.875deg, #2B2A72 0%, #FF4546 100%)",
         stats: {
@@ -58,7 +58,7 @@ const PACKAGES: Record<string, { id: string; name: string; location: string; ico
     liam: [
         {
             id: "ea",
-            name: "English Academy · Dasher",
+            name: "English Academy · Runner",
             location: "Balikpapan - Jendral Sudirman",
             icon: "/assets/images/package-banner-2.png", // Using the SNBP banner
             selected: true

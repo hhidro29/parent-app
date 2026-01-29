@@ -1,14 +1,22 @@
-"use client";
-
-import { useRouter } from "next/navigation";
 import Image from "next/image";
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import { REPORT_DETAILS } from "@/data/reports";
 
 const svgPaths = {
     back: "M15.41 7.41L14 6L8 12L14 18L15.41 16.59L10.83 12L15.41 7.41Z",
 };
 
-export default function ClassReportDetailPage() {
-    const router = useRouter();
+export default async function ClassReportDetailPage({ params }: { params: Promise<{ id: string }> }) {
+    const { id } = await params;
+
+    const report = REPORT_DETAILS[id];
+
+    if (!report) {
+        notFound();
+    }
+
+    const isEnglishAcademy = report.programType === 'english-academy';
 
     const days = [
         { day: "S", date: "16" },
@@ -34,14 +42,14 @@ export default function ClassReportDetailPage() {
             <div className="relative z-10 flex flex-col w-full">
                 {/* Top Bar - 18px top padding, 12px bottom gap */}
                 <div className="flex items-center px-[12px] pt-[18px] pb-[12px] w-full">
-                    <button
-                        onClick={() => router.back()}
+                    <Link
+                        href="/learning"
                         className="bg-white flex items-center justify-center p-[4px] rounded-full shrink-0 w-[34px] shadow-[0px_0px_0px_1px_#cfd3db_inset]"
                     >
                         <svg className="size-[24px]" viewBox="0 0 24 24" fill="none">
                             <path d={svgPaths.back} fill="#2C313A" />
                         </svg>
-                    </button>
+                    </Link>
                     <p className="flex-1 font-['Inter'] font-bold text-[16px] leading-[20px] text-center text-white">
                         Class Report Detail
                     </p>
@@ -85,9 +93,9 @@ export default function ClassReportDetailPage() {
 
                     {/* Unit Info Section */}
                     <div className="flex flex-col gap-[12px] mt-[4px]">
-                        <span className="font-['Inter'] text-[12px] text-[#5E677B]">25 November 2025</span>
+                        <span className="font-['Inter'] text-[12px] text-[#5E677B]">{report.date}</span>
                         <h1 className="font-['Inter'] font-bold text-[20px] text-[#2C313A] leading-[1.3]">
-                            Discovering Me - This Is Me!
+                            {report.unitTitle}
                         </h1>
 
                         <div className="flex items-center gap-[12px]">
@@ -95,15 +103,15 @@ export default function ClassReportDetailPage() {
                                 {/* Placeholder for teacher avatar */}
                             </div>
                             <div className="flex flex-col">
-                                <span className="text-[10px] text-[#5E677B]">Master Teacher</span>
-                                <span className="font-['Inter'] font-bold text-[12px] text-[#2C313A]">Winsi Elpril Sekarputri</span>
+                                <span className="text-[10px] text-[#5E677B]">{report.teacher.title}</span>
+                                <span className="font-['Inter'] font-bold text-[12px] text-[#2C313A]">{report.teacher.name}</span>
                             </div>
                         </div>
 
                         {/* Hero Image */}
                         <div className="relative w-full aspect-[328/180] rounded-[16px] overflow-hidden mt-[4px]">
                             <Image
-                                src="/assets/images/thumbnail-activity.png"
+                                src={report.heroImage}
                                 alt="Activity"
                                 fill
                                 className="object-cover"
@@ -122,78 +130,87 @@ export default function ClassReportDetailPage() {
                         </div>
 
                         <div className="flex flex-col gap-[12px]">
+                            {/* Learning Objective */}
                             <div className="flex flex-col gap-[4px]">
                                 <h3 className="font-['Inter'] font-bold text-[14px] text-[#2C313A] flex items-center gap-[6px]">
                                     <span>🎯</span> Tujuan pembelajaran
                                 </h3>
                                 <p className="font-['Inter'] text-[13px] text-[#2C313A] leading-[20px]">
-                                    To learn about living things and their young, life stages, and the number of offspring they have
+                                    {report.activityDetail.learningObjective}
                                 </p>
                             </div>
 
-                            <div className="flex flex-col gap-[4px]">
-                                <h3 className="font-['Inter'] font-bold text-[14px] text-[#2C313A] flex items-center gap-[6px]">
-                                    <span>🧠</span> Fokus keterampilan yang dilatih
-                                </h3>
+                            {/* Skills Focus - English Academy */}
+                            {isEnglishAcademy && report.activityDetail.skillsFocus && (
+                                <div className="flex flex-col gap-[4px]">
+                                    <h3 className="font-['Inter'] font-bold text-[14px] text-[#2C313A] flex items-center gap-[6px]">
+                                        <span>🧠</span> Fokus keterampilan yang dilatih
+                                    </h3>
 
-                                {/* Skill Card 1 */}
-                                <div className="border border-[#BF7AF0] rounded-[16px] p-[16px] flex flex-col gap-[12px] mt-[8px]">
-                                    <div className="flex items-start justify-between">
-                                        <div className="flex flex-col gap-[4px]">
-                                            <span className="font-['Inter'] font-semibold text-[10px] text-[#9747FF]">Social & Emotional Development</span>
-                                            <span className="font-['Inter'] font-bold text-[13px] text-[#2C313A] leading-[1.4]">
-                                                Show awareness of personal identity (own abilities and personal qualities)
-                                            </span>
+                                    {/* Vocabulary */}
+                                    {report.activityDetail.skillsFocus.vocabulary && (
+                                        <div className="mt-[8px]">
+                                            <p className="font-['Inter'] font-semibold text-[13px] text-[#2C313A] mb-[4px]">Vocabulary:</p>
+                                            {report.activityDetail.skillsFocus.vocabulary.map((item, idx) => (
+                                                <p key={idx} className="font-['Inter'] text-[13px] text-[#2C313A] leading-[20px] ml-[8px]">
+                                                    - {item}
+                                                </p>
+                                            ))}
                                         </div>
-                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" className="shrink-0 rotate-90">
-                                            <path d="M6 9l6 6 6-6" stroke="#2C313A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                        </svg>
-                                    </div>
+                                    )}
 
-                                    <div className="flex items-center justify-between">
-                                        <span className="font-['Inter'] text-[12px] text-[#5E677B]">Stimulation Result</span>
-                                        <div className="bg-[#FFF4E5] px-[12px] py-[6px] rounded-full flex items-center gap-[6px]">
-                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="#F26D0F">
-                                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                                            </svg>
-                                            <span className="font-['Inter'] font-bold text-[12px] text-[#2C313A]">Proficient</span>
+                                    {/* Structure */}
+                                    {report.activityDetail.skillsFocus.structure && (
+                                        <div className="mt-[8px]">
+                                            <p className="font-['Inter'] font-semibold text-[13px] text-[#2C313A] mb-[4px]">Structure:</p>
+                                            {report.activityDetail.skillsFocus.structure.map((item, idx) => (
+                                                <p key={idx} className="font-['Inter'] text-[13px] text-[#2C313A] leading-[20px] ml-[8px]">
+                                                    - {item}
+                                                </p>
+                                            ))}
                                         </div>
-                                    </div>
-
-                                    <p className="font-['Inter'] text-[12px] text-[#2C313A] leading-[18px]">
-                                        Liam showed authenticity today by being herself and honestly expressing her feelings. At the beginning of the day, she felt a little shy and returned to her mum after entering the class. However, it did not take long for Liam to build her confidence, and she became willing and able to participate in all the activities offered to her. We observed Liam engaging with these
-                                    </p>
+                                    )}
                                 </div>
+                            )}
 
-                                {/* Skill Card 2 */}
-                                <div className="border border-[#F26D0F] rounded-[16px] p-[16px] flex flex-col gap-[12px] mt-[8px]">
-                                    <div className="flex items-start justify-between">
-                                        <div className="flex flex-col gap-[4px]">
-                                            <span className="font-['Inter'] font-semibold text-[10px] text-[#E85C34]">Authenticity</span>
-                                            <span className="font-['Inter'] font-bold text-[13px] text-[#2C313A] leading-[1.4]">
-                                                Feels content being oneself, Expresses genuine feelings honestly, Respects personal uniqueness and individuality
-                                            </span>
+                            {/* Development Areas - Champions Wonderlab */}
+                            {!isEnglishAcademy && report.activityDetail.developmentAreas && (
+                                <div className="flex flex-col gap-[4px]">
+                                    <h3 className="font-['Inter'] font-bold text-[14px] text-[#2C313A] flex items-center gap-[6px]">
+                                        <span>🧠</span> Fokus keterampilan yang dilatih
+                                    </h3>
+
+                                    {report.activityDetail.developmentAreas.map((area, idx) => (
+                                        <div key={idx} className="border rounded-[16px] p-[16px] flex flex-col gap-[12px] mt-[8px]" style={{ borderColor: area.categoryColor }}>
+                                            <div className="flex items-start justify-between">
+                                                <div className="flex flex-col gap-[4px]">
+                                                    <span className="font-['Inter'] font-semibold text-[10px]" style={{ color: area.categoryColor }}>{area.category}</span>
+                                                    <span className="font-['Inter'] font-bold text-[13px] text-[#2C313A] leading-[1.4]">
+                                                        {area.title}
+                                                    </span>
+                                                </div>
+                                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" className="shrink-0 rotate-90">
+                                                    <path d="M6 9l6 6 6-6" stroke="#2C313A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                                </svg>
+                                            </div>
+
+                                            <div className="flex items-center justify-between">
+                                                <span className="font-['Inter'] text-[12px] text-[#5E677B]">Stimulation Result</span>
+                                                <div className="bg-[#FFF4E5] px-[12px] py-[6px] rounded-full flex items-center gap-[6px]">
+                                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="#F26D0F">
+                                                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                                                    </svg>
+                                                    <span className="font-['Inter'] font-bold text-[12px] text-[#2C313A]">{area.result}</span>
+                                                </div>
+                                            </div>
+
+                                            <p className="font-['Inter'] text-[12px] text-[#2C313A] leading-[18px]">
+                                                {area.notes}
+                                            </p>
                                         </div>
-                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" className="shrink-0 rotate-90">
-                                            <path d="M6 9l6 6 6-6" stroke="#2C313A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                        </svg>
-                                    </div>
-
-                                    <div className="flex items-center justify-between">
-                                        <span className="font-['Inter'] text-[12px] text-[#5E677B]">Stimulation Result</span>
-                                        <div className="bg-[#FFF4E5] px-[12px] py-[6px] rounded-full flex items-center gap-[6px]">
-                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="#F26D0F">
-                                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                                            </svg>
-                                            <span className="font-['Inter'] font-bold text-[12px] text-[#2C313A]">Proficient</span>
-                                        </div>
-                                    </div>
-
-                                    <p className="font-['Inter'] text-[12px] text-[#2C313A] leading-[18px]">
-                                        Liam frequently brings both his hands and feet to his mouth. During floor time, he spends significant moments looking intently at his hands, rotating them, and grasping his toes. He uses his hands to purposefully grasp toys and shake them.
-                                    </p>
+                                    ))}
                                 </div>
-                            </div>
+                            )}
                         </div>
                     </div>
 
@@ -210,16 +227,13 @@ export default function ClassReportDetailPage() {
                             <span className="font-['Inter'] font-bold text-[16px] text-[#2C313A]">Catatan Perkembangan</span>
                         </div>
                         <p className="font-['Inter'] text-[13px] text-[#2C313A] leading-[20px]">
-                            Hari ini, Ananda aktif mengikuti semua kegiatan dengan antusiasme tinggi 🗣️. Dari penguasaan materi, Ananda memahami materi dengan sangat baik dan mampu mengerjakan tugas dengan mandiri 📖. Ketika berinteraksi dengan yang lain, Ananda menunjukkan kemampuan untuk berkomunikasi dengan lancar dan positif, bekerja sama, serta berbagi pendapat dengan percaya diri 👥.
+                            {report.developmentNotes}
                         </p>
                     </div>
 
                     <div className="mt-[20px] mb-[80px]">
-                        <p className="font-['Inter'] text-[12px] text-[#2C313A] leading-[18px]">
-                            Mohon diinformasikan jika ada hal yang ingin Ayah/Bunda tanyakan.
-                        </p>
-                        <p className="font-['Inter'] text-[12px] text-[#2C313A] leading-[18px] mt-[12px]">
-                            Terima kasih atas perhatian dan kerja samanya. Hormat kami, English Academy Center
+                        <p className="font-['Inter'] text-[12px] text-[#2C313A] leading-[18px] whitespace-pre-line">
+                            {report.closingMessage}
                         </p>
                     </div>
 
