@@ -137,10 +137,30 @@ export default async function JournalDetailPage({ params }: { params: Promise<{ 
                         <h1 className="font-['Inter'] font-bold text-[18px] text-[#2C313A]">{journalEntry.title}</h1>
                     </div>
 
-                    <div className="bg-[#F7F9FD] rounded-[12px] p-[16px] flex flex-col gap-[4px]">
-                        <span className="font-['Inter'] font-normal text-[12px] text-[#5E677B]">Total Stimulasi</span>
-                        <span className="font-['Inter'] font-bold text-[20px] text-[#2C313A]">{journalEntry.totalStimulasi}</span>
+
+                    <div className="bg-[#F7F9FD] rounded-[12px] p-[16px]">
+                        <div className="grid grid-cols-3 gap-[16px]">
+                            <div className="flex flex-col">
+                                <span className="font-['Inter'] font-normal text-[12px] text-[#9AA2B1]">Proficient</span>
+                                <span className="font-['Inter'] font-bold text-[20px] text-[#2C313A]">
+                                    {journalEntry.skills.filter(skill => skill.status === 'Proficient').length}
+                                </span>
+                            </div>
+                            <div className="flex flex-col">
+                                <span className="font-['Inter'] font-normal text-[12px] text-[#9AA2B1]">Developing</span>
+                                <span className="font-['Inter'] font-bold text-[20px] text-[#2C313A]">
+                                    {journalEntry.skills.filter(skill => skill.status === 'Developing').length}
+                                </span>
+                            </div>
+                            <div className="flex flex-col">
+                                <span className="font-['Inter'] font-normal text-[12px] text-[#9AA2B1]">Need Support</span>
+                                <span className="font-['Inter'] font-bold text-[20px] text-[#2C313A]">
+                                    {journalEntry.skills.filter(skill => skill.status === 'Need Support').length}
+                                </span>
+                            </div>
+                        </div>
                     </div>
+
 
                     <p className="font-['Inter'] font-normal text-[14px] leading-[22px] text-[#5E677B]">
                         {journalEntry.description}

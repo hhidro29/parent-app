@@ -113,6 +113,7 @@ const LIAM_JOURNAL = [
 ];
 
 import { REPORTS_BY_CHILD } from "@/data/reports";
+import { JOURNAL_DATA } from "@/data/journal";
 
 
 const DORA_JOURNAL = [
@@ -474,11 +475,30 @@ export default function LearningPage() {
                                         {item.description}
                                     </p>
 
-                                    {/* Footer: Total Stimulasi */}
-                                    <div className="w-full bg-[#F1F5F9] rounded-[12px] p-[12px] flex flex-col">
-                                        <span className="font-['Inter'] font-normal text-[12px] text-[#5E677B]">Total Stimulasi</span>
-                                        <span className="font-['Inter'] font-bold text-[16px] text-[#2C313A]">{item.totalStimulasi}</span>
+                                    {/* Footer: Proficiency Breakdown */}
+                                    <div className="w-full bg-[#F1F5F9] rounded-[12px] p-[12px]">
+                                        <div className="grid grid-cols-3 gap-[12px]">
+                                            <div className="flex flex-col">
+                                                <span className="font-['Inter'] font-normal text-[12px] text-[#9AA2B1]">Proficient</span>
+                                                <span className="font-['Inter'] font-bold text-[16px] text-[#2C313A]">
+                                                    {JOURNAL_DATA[item.id]?.skills.filter(skill => skill.status === 'Proficient').length || 0}
+                                                </span>
+                                            </div>
+                                            <div className="flex flex-col">
+                                                <span className="font-['Inter'] font-normal text-[12px] text-[#9AA2B1]">Developing</span>
+                                                <span className="font-['Inter'] font-bold text-[16px] text-[#2C313A]">
+                                                    {JOURNAL_DATA[item.id]?.skills.filter(skill => skill.status === 'Developing').length || 0}
+                                                </span>
+                                            </div>
+                                            <div className="flex flex-col">
+                                                <span className="font-['Inter'] font-normal text-[12px] text-[#9AA2B1]">Need Support</span>
+                                                <span className="font-['Inter'] font-bold text-[16px] text-[#2C313A]">
+                                                    {JOURNAL_DATA[item.id]?.skills.filter(skill => skill.status === 'Need Support').length || 0}
+                                                </span>
+                                            </div>
+                                        </div>
                                     </div>
+
                                 </Link>
                             ))
                         ) : (
