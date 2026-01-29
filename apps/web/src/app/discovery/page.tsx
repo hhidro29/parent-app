@@ -44,38 +44,30 @@ export default function DiscoveryPage() {
     const [activeFilter, setActiveFilter] = useState("All");
 
     return (
-        <div className="bg-white flex flex-col min-h-full w-full pb-[80px]">
-            {/* Header Section with Background Style */}
-            <div className="relative w-full h-[210px] bg-[#1FB0C3] overflow-hidden shrink-0 rounded-bl-[40px]">
-                {/* Pattern Background Image */}
-                <div className="absolute inset-0 z-0">
-                    <Image
-                        src="/assets/images/page-specialbuatkamu/background-header-specialuntukkamu.png"
-                        alt="Background Header"
-                        fill
-                        className="object-cover object-top opacity-90"
-                        priority
-                    />
-                </div>
+        <div className="bg-white flex flex-col min-h-screen w-full pb-[80px] relative">
 
-                {/* Header Title & Back Button */}
-                <div className="relative z-10 flex items-center gap-[12px] px-[16px] pt-[40px]">
-                    <Link href="/" className="shrink-0 text-white">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M19 12L5 12" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-                            <path d="M12 19L5 12L12 5" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
-                    </Link>
-                    <h1 className="font-['Inter'] font-bold text-[20px] text-white tracking-tight">Spesial Buat Anak Anda</h1>
-                </div>
+            {/* Header Background - extends behind title + half of banner for overlap effect */}
+            <div className="absolute top-0 left-0 w-full h-[122px] overflow-hidden z-0">
+                <Image
+                    src="/assets/images/background-specialuntukanakanda.png"
+                    alt="Background Header"
+                    fill
+                    className="object-cover object-top"
+                    priority
+                />
             </div>
 
-            {/* Main Content */}
-            <div className="flex flex-col w-full -mt-[95px] relative z-20">
+            {/* Content Container */}
+            <div className="relative z-10 flex flex-col w-full">
 
-                {/* Banner Section */}
-                <div className="w-full px-[12px] flex flex-col items-center">
-                    <div className="w-full aspect-[336/133] relative rounded-[12px] overflow-hidden shadow-md">
+                {/* Title Section - No back arrow, just the title */}
+                <div className="flex items-center px-[12px] pt-[18px] pb-[18px]">
+                    <h1 className="font-['Inter'] font-bold text-[20px] text-white tracking-tight">Spesial Buat Anak Anda</h1>
+                </div>
+
+                {/* Banner Section - Full width with 12px padding, 133px height */}
+                <div className="flex flex-col w-full px-[12px]">
+                    <div className="w-full h-[133px] relative rounded-[12px] overflow-hidden shadow-md">
                         <Image
                             src="/assets/images/page-specialbuatkamu/banner-promo-specialbuatkamu.png"
                             alt="Festival Semester Baru"
@@ -85,8 +77,8 @@ export default function DiscoveryPage() {
                         />
                     </div>
 
-                    {/* Pagination & Lihat Semua */}
-                    <div className="w-full flex justify-between items-center mt-[10px] px-[4px]">
+                    {/* Pagination & Lihat Semua - 12px spacing from banner */}
+                    <div className="w-full flex justify-between items-center mt-[12px]">
                         <div className="flex gap-[6px]">
                             <div className="w-[8px] h-[8px] rounded-full bg-[#20A4B0]"></div>
                             <div className="w-[8px] h-[8px] rounded-full bg-[#D9D9D9]"></div>
@@ -96,8 +88,8 @@ export default function DiscoveryPage() {
                     </div>
                 </div>
 
-                {/* Populer Section */}
-                <div className="w-full px-[12px] mt-[28px]">
+                {/* Populer Section & Filters */}
+                <div className="w-full mt-[12px] px-[12px]">
                     <div className="flex items-center justify-between mb-[16px]">
                         <h2 className="font-['Inter'] font-bold text-[20px] text-[#2C313A]">Populer untuk Anak</h2>
                         <button className="border border-[#E2E8F0] rounded-[10px] px-[12px] py-[6px] bg-white text-[14px] font-bold text-[#2C313A] flex items-center gap-[8px]">
@@ -142,12 +134,12 @@ export default function DiscoveryPage() {
                                     />
                                 </div>
 
-                                {/* Content Overlay */}
-                                <div className="relative z-10 w-[65%] flex flex-col justify-center pl-[20px] pr-[10px] py-[16px]">
+                                {/* Content Overlay - Adjusted width to 72% to fit text better */}
+                                <div className="relative z-10 w-[72%] flex flex-col justify-center pl-[20px] pr-[5px] py-[16px]">
                                     <h3 className="font-['Inter'] font-bold text-[17px] text-[#2C313A] leading-[1.2] mb-[6px]">{program.title}</h3>
-                                    <p className="font-['Inter'] font-medium text-[11px] text-[#475569] leading-[1.4] mb-[12px] line-clamp-3 opacity-90">{program.description}</p>
+                                    <p className="font-['Inter'] font-medium text-[11px] text-[#475569] leading-[1.4] mb-[12px] line-clamp-3 opacity-90 tracking-tight">{program.description}</p>
                                     <div>
-                                        <button className="bg-[#F26D0F] text-white text-[12px] font-bold px-[18px] py-[8px] rounded-full">
+                                        <button className="bg-[#F26D0F] text-white text-[12px] font-bold px-[18px] py-[8px] rounded-full shadow-sm">
                                             {program.cta}
                                         </button>
                                     </div>
