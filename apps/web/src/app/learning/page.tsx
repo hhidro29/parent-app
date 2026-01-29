@@ -53,20 +53,21 @@ const CHILDREN_DATA: ChildData[] = [
     }
 ];
 
+
 const PACKAGES: Record<string, { id: string; name: string; location: string; icon: string | null; selected: boolean }[]> = {
     liam: [
         {
             id: "ea",
             name: "English Academy · Dasher",
             location: "Balikpapan - Jendral Sudirman",
-            icon: "/assets/images/iconlogo-englishacademy.png",
+            icon: "/assets/images/package-banner-2.png", // Using the SNBP banner
             selected: true
         },
         {
             id: "ba",
             name: "Brain Academy Center",
             location: "Balikpapan - Jendral Sudirman",
-            icon: null,
+            icon: "/assets/images/package-banner-1.png", // Using the Promo banner
             selected: false
         }
     ],
@@ -75,7 +76,7 @@ const PACKAGES: Record<string, { id: string; name: string; location: string; ico
             id: "cw",
             name: "Champions Wonderlab",
             location: "Balikpapan - Jendral Sudirman",
-            icon: "/assets/images/iconlogo-championswonderlab.png",
+            icon: "/assets/images/package-banner-3.png", // Using the Tryout banner
             selected: true
         }
     ]
@@ -108,63 +109,37 @@ const LIAM_JOURNAL = [
     }
 ];
 
-const ALL_REPORTS = [
+import { REPORTS_BY_CHILD } from "@/data/reports";
+
+
+const DORA_JOURNAL = [
     {
-        id: "c1",
-        type: "Class Report",
-        unit: "Unit J · Writing Skills",
-        title: "Essay Structure",
-        time: "5 Hour ago",
-        status: "Hadir",
-        statusColor: "bg-[#dbf5e8] text-[#2a7650]",
-        link: "/learning/report/1"
+        id: "cognitive",
+        title: "Cognitive Development",
+        description: "Building problem-solving skills, memory, and logical thinking through puzzles and patterns.",
+        bg: "bg-[#FF9800]", // Orange
+        totalStimulasi: 3
     },
     {
-        id: "c2",
-        type: "Class Report",
-        unit: "Unit J · Writing Skills",
-        title: "Grammar Essentials",
-        time: "1 Week ago",
-        status: "Hadir",
-        statusColor: "bg-[#dbf5e8] text-[#2a7650]",
-        link: "/learning/report/2"
+        id: "language",
+        title: "Communication & Language Development",
+        description: "Enhancing vocabulary, sentence structure, and storytelling abilities.",
+        bg: "bg-[#9C27B0]", // Purple
+        totalStimulasi: 4
     },
     {
-        id: "c3",
-        type: "Class Report",
-        unit: "Unit K · Creative Writing",
-        title: "Character Development",
-        time: "2 Week ago",
-        status: "Hadir",
-        statusColor: "bg-[#dbf5e8] text-[#2a7650]",
-        link: "/learning/report/3"
+        id: "physical",
+        title: "Physical Development",
+        description: "Improving gross and fine motor skills through active play and coordination exercises.",
+        bg: "bg-[#4CAF50]",
+        totalStimulasi: 3
     },
     {
-        id: "c4",
-        type: "Class Report",
-        unit: "Unit L · Literature Analysis",
-        title: "Poetry Techniques",
-        time: "3 Week ago",
-        status: "Hadir",
-        statusColor: "bg-[#dbf5e8] text-[#2a7650]",
-        link: "/learning/report/4"
-    },
-    {
-        id: "p1",
-        type: "Teacher Parent Report",
-        title: "[kids Name] - Learning Report 1",
-        time: "3 Week ago",
-        link: "#"
-    },
-    {
-        id: "c5",
-        type: "Class Report",
-        unit: "Unit M · Research Skills",
-        title: "Citing Sources",
-        time: "4 Week ago",
-        status: "Hadir",
-        statusColor: "bg-[#dbf5e8] text-[#2a7650]",
-        link: "/learning/report/5"
+        id: "social",
+        title: "Social & Emotional Development",
+        description: "Fostering cooperation, empathy, and self-confidence in group activities.",
+        bg: "bg-[#673AB7]", // Deep Purple
+        totalStimulasi: 3
     }
 ];
 
@@ -175,7 +150,9 @@ export default function LearningPage() {
 
     const selectedChild = CHILDREN_DATA.find(c => c.id === selectedChildId) || CHILDREN_DATA[0];
 
-    const filteredReports = ALL_REPORTS.filter(report => {
+    const currentReports = REPORTS_BY_CHILD[selectedChildId] || [];
+
+    const filteredReports = currentReports.filter(report => {
         if (reportFilter === "All") return true;
         if (reportFilter === "Class Report") return report.type === "Class Report";
         if (reportFilter === "Parent Teacher Report") return report.type === "Teacher Parent Report";
@@ -295,7 +272,7 @@ export default function LearningPage() {
                                             : "border-[#E2E8F0]"
                                             }`}
                                     >
-                                        <div className={`w-[36px] h-[36px] rounded-full flex items-center justify-center shrink-0 ${pkg.icon ? "bg-transparent" : "bg-[#F1F5F9]"
+                                        <div className={`w-[80px] h-[48px] rounded-[8px] flex items-center justify-center shrink-0 overflow-hidden ${pkg.icon ? "bg-transparent" : "bg-[#F1F5F9]"
                                             }`}>
                                             {pkg.icon ? (
                                                 <div className="relative w-full h-full">
@@ -303,11 +280,11 @@ export default function LearningPage() {
                                                         src={pkg.icon}
                                                         alt={pkg.name}
                                                         fill
-                                                        className="object-contain"
+                                                        className="object-cover"
                                                     />
                                                 </div>
                                             ) : (
-                                                <div className="w-full h-full rounded-full bg-[#E2E8F0]" />
+                                                <div className="w-full h-full bg-[#E2E8F0]" />
                                             )}
                                         </div>
                                         <div className="flex flex-col">
@@ -435,7 +412,7 @@ export default function LearningPage() {
                     </>
                 ) : (
                     <div className="flex flex-col gap-[12px]">
-                        {/* Journal Cards for Liam */}
+                        {/* Journal Content Based on Child */}
                         {selectedChildId === 'liam' ? (
                             LIAM_JOURNAL.map((item, index) => (
                                 <div
@@ -466,6 +443,39 @@ export default function LearningPage() {
                                         </div>
                                     </div>
                                 </div>
+                            ))
+                        ) : selectedChildId === 'dora' ? (
+                            // Dora's Journal
+                            DORA_JOURNAL.map((item, index) => (
+                                <Link
+                                    key={index}
+                                    href={`/learning/journal/${item.id}`}
+                                    className="bg-white rounded-[20px] p-[16px] shadow-sm border border-slate-100 flex flex-col gap-[12px] cursor-pointer active:scale-[0.99] transition-transform"
+                                >
+                                    {/* Header */}
+                                    <div className="flex items-center justify-between">
+                                        <div className="flex items-center gap-[12px]">
+                                            <div className={`size-[32px] rounded-full ${item.bg}`} />
+                                            <span className="font-['Inter'] font-bold text-[16px] text-[#2C313A]">
+                                                {item.title}
+                                            </span>
+                                        </div>
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2C313A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                            <path d="M9 18l6-6-6-6" />
+                                        </svg>
+                                    </div>
+
+                                    {/* Description */}
+                                    <p className="font-['Inter'] text-[13px] text-[#2C313A] leading-[20px]">
+                                        {item.description}
+                                    </p>
+
+                                    {/* Footer: Total Stimulasi */}
+                                    <div className="w-full bg-[#F1F5F9] rounded-[12px] p-[12px] flex flex-col">
+                                        <span className="font-['Inter'] font-normal text-[12px] text-[#5E677B]">Total Stimulasi</span>
+                                        <span className="font-['Inter'] font-bold text-[16px] text-[#2C313A]">{item.totalStimulasi}</span>
+                                    </div>
+                                </Link>
                             ))
                         ) : (
                             <div className="w-full py-[40px] flex flex-col items-center justify-center opacity-60">

@@ -1,112 +1,89 @@
-"use client";
+import Link from 'next/link';
+import Image from 'next/image';
+import { notFound } from 'next/navigation';
+import { JOURNAL_DATA } from '@/data/journal';
 
-import { useParams, useRouter } from "next/navigation";
+export default async function JournalDetailPage({ params }: { params: Promise<{ id: string }> }) {
+    const { id } = await params;
+    const journalEntry = JOURNAL_DATA[id];
 
-const svgPaths = {
-    back: "M15.41 7.41L14 6L8 12L14 18L15.41 16.59L10.83 12L15.41 7.41Z",
-};
-
-const lessonData = [
-    { id: 1, title: "Cooking verbs and kitchen terms", type: "Language Introduction", completed: true, score: 90 },
-    { id: 2, title: "Thai traditional cuisine", type: "Culture & Pronunciation", completed: true, score: 85 },
-    { id: 3, title: "Zero conditional sentences", type: "Language Practice", completed: true, score: 88 },
-    { id: 4, title: "Kitchen equipment vocabulary", type: "Language Extension", completed: true, score: 92 },
-    { id: 5, title: "Reading: World Cuisines", type: "Reading Practice", completed: true, score: 78 },
-    { id: 6, title: "Listening: Restaurant Orders", type: "Listening Practice", completed: true, score: 85 },
-    { id: 7, title: "Speaking: Describe a Recipe", type: "Speaking Practice", completed: true, score: 80 },
-    { id: 8, title: "Unit A Review", type: "Review Session", completed: true, score: 87 },
-];
-
-const unitInfo = {
-    name: "Unit A",
-    theme: "Food & Cooking",
-    color: "#986CE5",
-    description: "In this unit, students learned about their taste buds and how our tongues interact with flavours. Grammar focus: Zero conditional sentences, quantifiers.",
-    avgScore: 86,
-    finalTest: "85%",
-};
-
-export default function JournalDetailPage() {
-    const router = useRouter();
-    const params = useParams();
+    if (!journalEntry) {
+        notFound();
+    }
 
     return (
-        <div className="flex flex-col min-h-full w-full bg-[#f7f9fd]">
+        <div className="flex flex-col min-h-screen bg-[#F7F9FD] pb-[40px]">
             {/* Header */}
-            <div
-                className="relative overflow-hidden rounded-bl-[28px] w-full"
-                style={{
-                    backgroundImage: `linear-gradient(90deg, rgba(152, 108, 229, 0.9) 0%, rgba(152, 108, 229, 0.7) 100%)`,
-                }}
-            >
-
-                <div className="flex items-center p-[12px] w-full">
-                    <button
-                        onClick={() => router.back()}
-                        className="bg-white flex items-center justify-center p-[4px] rounded-full shrink-0 w-[34px] shadow-[0px_0px_0px_1px_#cfd3db_inset]"
-                    >
-                        <svg className="size-[24px]" viewBox="0 0 24 24" fill="none">
-                            <path d={svgPaths.back} fill="#2C313A" />
-                        </svg>
-                    </button>
-                    <p className="flex-1 font-['Inter'] font-bold text-[20px] leading-[20px] text-center text-white">
-                        {unitInfo.name} Journal
-                    </p>
-                    <div className="w-[34px]" />
-                </div>
-
-                {/* Unit Info */}
-                <div className="px-[12px] pb-[16px]">
-                    <div className="flex items-center gap-[8px] mb-[8px]">
-                        <div className="rounded-full size-[12px] bg-white" />
-                        <p className="font-['Inter'] font-bold text-[20px] text-white">{unitInfo.name}: {unitInfo.theme}</p>
+            <div className="bg-white px-[20px] py-[16px] flex items-center gap-[12px] sticky top-0 z-10 shadow-sm">
+                <Link href="/learning" className="w-[32px] h-[32px] flex items-center justify-center rounded-full active:bg-gray-100">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M19 12H5" stroke="#2C313A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                        <path d="M12 19L5 12L12 5" stroke="#2C313A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                </Link>
+                <div className="flex-1 flex justify-center items-center gap-[8px]">
+                    <div className="w-[32px] h-[32px] rounded-full overflow-hidden relative">
+                        <Image
+                            src="/assets/images/profile-dora.png"
+                            alt="Dora"
+                            fill
+                            className="object-cover"
+                        />
                     </div>
-                    <p className="font-['Inter'] text-[13px] text-white/90 leading-[20px]">{unitInfo.description}</p>
+                    <span className="font-['Inter'] font-bold text-[16px] text-[#2C313A]">Dora</span>
                 </div>
+                <div className="w-[32px]" /> {/* Spacer for centering */}
             </div>
 
-            {/* Stats */}
-            <div className="flex gap-[12px] p-[12px] -mt-[8px]">
-                <div className="bg-white flex-1 rounded-[12px] p-[12px] shadow-[0px_4px_8px_0px_rgba(0,0,0,0.08)]">
-                    <p className="font-['Inter'] font-bold text-[24px] text-[#2c313a]">{unitInfo.avgScore}%</p>
-                    <p className="font-['Inter'] text-[11px] text-[#5e677b]">Average Score</p>
-                </div>
-                <div className="bg-white flex-1 rounded-[12px] p-[12px] shadow-[0px_4px_8px_0px_rgba(0,0,0,0.08)]">
-                    <p className="font-['Inter'] font-bold text-[24px] text-[#2c313a]">{unitInfo.finalTest}</p>
-                    <p className="font-['Inter'] text-[11px] text-[#5e677b]">Final Test</p>
-                </div>
-                <div className="bg-white flex-1 rounded-[12px] p-[12px] shadow-[0px_4px_8px_0px_rgba(0,0,0,0.08)]">
-                    <p className="font-['Inter'] font-bold text-[24px] text-[#2c313a]">{lessonData.length}</p>
-                    <p className="font-['Inter'] text-[11px] text-[#5e677b]">Lessons</p>
-                </div>
-            </div>
+            <div className="px-[20px] pt-[20px] flex flex-col gap-[16px]">
+                {/* Summary Card */}
+                <div className="bg-white rounded-[20px] p-[20px] flex flex-col gap-[16px] shadow-sm">
+                    <div className="flex items-center gap-[12px]">
+                        <div className={`w-[48px] h-[48px] rounded-full ${journalEntry.bg}`} />
+                        <h1 className="font-['Inter'] font-bold text-[18px] text-[#2C313A]">{journalEntry.title}</h1>
+                    </div>
 
-            {/* Lessons List */}
-            <div className="flex flex-col gap-[12px] px-[12px] pb-[12px]">
-                <p className="font-['Inter'] font-bold text-[16px] text-[#2c313a]">Lessons Completed</p>
+                    <div className="bg-[#F7F9FD] rounded-[12px] p-[16px] flex flex-col gap-[4px]">
+                        <span className="font-['Inter'] font-normal text-[12px] text-[#5E677B]">Total Stimulasi</span>
+                        <span className="font-['Inter'] font-bold text-[20px] text-[#2C313A]">{journalEntry.totalStimulasi}</span>
+                    </div>
 
-                {lessonData.map((lesson, index) => (
-                    <div key={lesson.id} className="bg-white rounded-[12px] p-[12px] shadow-[0px_4px_8px_0px_rgba(0,0,0,0.08)] flex gap-[12px] items-center">
-                        <div
-                            className="size-[40px] rounded-full flex items-center justify-center"
-                            style={{ backgroundColor: `${unitInfo.color}20` }}
-                        >
-                            <span className="font-['Inter'] font-bold text-[14px]" style={{ color: unitInfo.color }}>
-                                {index + 1}
-                            </span>
-                        </div>
-                        <div className="flex-1">
-                            <p className="font-['Inter'] font-semibold text-[13px] text-[#2c313a]">{lesson.title}</p>
-                            <p className="font-['Inter'] text-[11px] text-[#5e677b]">{lesson.type}</p>
-                        </div>
-                        <div className="flex flex-col items-end">
-                            <p className="font-['Inter'] font-bold text-[16px] text-[#2c313a]">{lesson.score}%</p>
-                            <div className="bg-[#dbf5e8] px-[8px] py-[2px] rounded-full">
-                                <span className="font-['Inter'] font-bold text-[9px] text-[#2a7650]">Completed</span>
+                    <p className="font-['Inter'] font-normal text-[14px] leading-[22px] text-[#5E677B]">
+                        {journalEntry.description}
+                    </p>
+                </div>
+
+                {/* Skills List */}
+                <div className="flex flex-col gap-[12px]">
+                    {journalEntry.skills.map((skill, index) => (
+                        <div key={index} className="bg-white rounded-[20px] p-[16px] flex flex-col gap-[16px] shadow-sm">
+                            <h3 className="font-['Inter'] font-bold text-[14px] leading-[20px] text-[#2C313A]">
+                                {skill.title}
+                            </h3>
+
+                            <hr className="border-[#E2E8F0]" />
+
+                            <div className="flex items-center justify-between">
+                                <div className={`px-[12px] py-[6px] rounded-full flex items-center gap-[6px] ${skill.status === 'Proficient' ? 'bg-[#E6F6EC]' :
+                                    skill.status === 'Developing' ? 'bg-[#E3F2FD]' :
+                                        'bg-[#F3E5F5]'
+                                    }`}>
+                                    <div className={`w-[16px] h-[16px] rounded-full ${skill.status === 'Proficient' ? 'bg-[#4CAF50]' :
+                                        skill.status === 'Developing' ? 'bg-[#2196F3]' :
+                                            'bg-[#9C27B0]'
+                                        }`} />
+                                    <span className="font-['Inter'] font-bold text-[12px] text-[#2C313A]">
+                                        {skill.status}
+                                    </span>
+                                </div>
+
+                                <Link href={`/learning/journal/${id}/${index}`} className="bg-[#FF6B00] text-white px-[16px] py-[8px] rounded-full font-['Inter'] font-bold text-[12px]">
+                                    See Detail
+                                </Link>
                             </div>
                         </div>
-                    </div>
-                ))}
+                    ))}
+                </div>
             </div>
         </div>
     );

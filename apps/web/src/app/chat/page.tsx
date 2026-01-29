@@ -32,11 +32,7 @@ export default function ChatPage() {
 
                     <div className="relative z-10 flex items-center justify-between px-[12px] h-full pt-[24px]">
                         <h1 className="font-['Inter'] font-bold text-[20px] text-white tracking-[-0.12px]">Chat</h1>
-                        <div className="w-[32px] h-[32px] bg-white rounded-full flex items-center justify-center">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#20B0C3" strokeWidth="3" strokeLinecap="round">
-                                <path d="M12 5V19M5 12H19" />
-                            </svg>
-                        </div>
+                        <div className="w-[32px] h-[32px]" />
                     </div>
                 </div>
             </div>
