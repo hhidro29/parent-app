@@ -185,3 +185,16 @@
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
+
+/* Mobile viewport fix - Prevent white spacing on scroll */
+html, body {
+  overscroll-behavior: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Override min-h-screen to use dynamic viewport height */
+@supports (min-height: 100dvh) {
+  .min-h-screen {
+    min-height: 100dvh !important;
+  }
+}

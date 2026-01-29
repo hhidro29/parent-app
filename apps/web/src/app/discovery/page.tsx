@@ -44,7 +44,7 @@ export default function DiscoveryPage() {
     const [activeFilter, setActiveFilter] = useState("All");
 
     return (
-        <div className="bg-white flex flex-col min-h-screen w-full pb-[80px] relative">
+        <div className="bg-white flex flex-col min-h-[100dvh] w-full pb-[80px] relative">
 
             {/* Header Background - extends behind title + half of banner for overlap effect */}
             <div className="absolute top-0 left-0 w-full h-[122px] overflow-hidden z-0">
