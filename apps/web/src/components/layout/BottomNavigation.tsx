@@ -92,7 +92,7 @@ export default function BottomNavigation() {
     const isDiscovery = pathname.startsWith("/discovery");
 
     // Don't show navigation on full-screen pages
-    const hiddenPaths = ["/payment", "/my-child", "/reward", "/auth", "/learning/report"];
+    const hiddenPaths = ["/payment", "/my-child", "/reward", "/auth", "/learning/report", "/gallery"];
     const shouldHide = hiddenPaths.some(path => pathname.startsWith(path));
 
     if (shouldHide) return null;

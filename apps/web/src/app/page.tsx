@@ -130,14 +130,14 @@ function MyChildCard() {
 
 function GalleryCard() {
   return (
-    <div className="bg-white flex-[1_0_0] min-h-px min-w-px relative rounded-[16px] shadow-[0px_12px_16px_0px_rgba(129,134,142,0.12)]">
+    <Link href="/gallery" className="bg-white flex-[1_0_0] min-h-px min-w-px relative rounded-[16px] shadow-[0px_12px_16px_0px_rgba(129,134,142,0.12)]">
       <div className="flex flex-col items-center justify-center size-full">
         <div className="content-stretch flex flex-col gap-[4px] items-center justify-center p-[12px] relative w-full">
           <ImageIcon />
-          <p className="font-['Inter'] font-semibold leading-[16px] min-w-full not-italic relative shrink-0 text-[#2c313a] text-[12px] text-center w-[min-content]">Galery</p>
+          <p className="font-['Inter'] font-semibold leading-[16px] min-w-full not-italic relative shrink-0 text-[#2c313a] text-[12px] text-center w-[min-content]">Gallery</p>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }
 

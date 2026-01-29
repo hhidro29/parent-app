@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 
 const svgPaths = {
@@ -68,17 +69,15 @@ function ChildCard({ child }: { child: typeof children[0] }) {
     );
 }
 
-function PromoCard() {
+function PromoCard({ src }: { src: string }) {
     return (
-        <div className="relative shrink-0 w-[254px] h-[112px] rounded-[12px] overflow-hidden bg-gradient-to-br from-[#E8F8F7] to-[#FFF9EE]">
-            <div className="absolute inset-0 flex items-center justify-center">
-                <span className="text-[48px]">📚</span>
-            </div>
-            <button className="absolute bottom-[14px] right-[14px] bg-[#f26d0f] rounded-full h-[28px] px-[12px] flex items-center justify-center">
-                <p className="font-['Inter'] font-bold text-[12px] leading-[18px] text-white">
-                    Langganan
-                </p>
-            </button>
+        <div className="relative shrink-0 w-[280px] h-[112px] rounded-[12px] overflow-hidden bg-gray-100 shadow-sm border border-[#E2E8F0]">
+            <Image
+                src={src}
+                alt="Promo Banner"
+                fill
+                className="object-cover"
+            />
         </div>
     );
 }
@@ -141,8 +140,8 @@ export default function MyChildPage() {
                             Paket belajar untuk anak anda
                         </p>
                         <div className="flex gap-[10px] overflow-x-auto pb-[4px] -mx-[12px] px-[12px] scrollbar-hide">
-                            <PromoCard />
-                            <PromoCard />
+                            <PromoCard src="/assets/images/banner-promo-diskonsd.png" />
+                            <PromoCard src="/assets/images/banner-promo-snbp.png" />
                         </div>
                     </div>
                 </div>
