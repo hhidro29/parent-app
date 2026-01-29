@@ -4,15 +4,26 @@ export interface Skill {
     observationIndicators: string[];
     activityDetail: string;
     updatedDate?: string;
+    // New fields for English Academy
+    category?: string;
+    date?: string; // e.g. "5 Hour ago"
+    quizScore?: number;
+    hasReport?: boolean;
 }
 
 export interface JournalEntry {
     id: string;
     title: string;
+    subTitle?: string; // e.g. "Unit A"
     description: string;
     bg: string;
     totalStimulasi: number;
     skills: Skill[];
+    // New fields for English Academy
+    scores?: {
+        finalTest: number;
+        productiveFinal: number;
+    };
 }
 
 export const JOURNAL_DATA: Record<string, JournalEntry> = {
@@ -346,6 +357,80 @@ export const JOURNAL_DATA: Record<string, JournalEntry> = {
                     'Help wipe the table.'
                 ],
                 activityDetail: 'Clean Up Song: Singing while tidying up. Helper Chart: Assigning simple jobs like line leader. Modeling: Showing how to take care of classroom items.'
+            }
+        ]
+    },
+    'unit-a-crazy-colour': {
+        id: 'unit-a-crazy-colour',
+        subTitle: 'Unit A',
+        title: 'Crazy Colour',
+        description: 'In this unit, students learned about their taste buds and how our tongues interact with flavours. Structure...',
+        bg: 'bg-gradient-to-r from-[#8E2DE2] to-[#4A00E0]', // Example gradient
+        totalStimulasi: 0, // Not used for EA
+        scores: {
+            finalTest: 85,
+            productiveFinal: 85
+        },
+        skills: [
+            {
+                category: 'A.1 Language Introduction',
+                title: 'Kata kerja memasak',
+                date: '5 Hour ago',
+                status: 'Proficient', // Reusing status for badge color logic if needed, or ignore
+                quizScore: 70,
+                observationIndicators: [],
+                activityDetail: ''
+            },
+            {
+                category: 'A.3 Culture & pronunciation',
+                title: 'Makanan khas Thailand',
+                date: '5 Days ago',
+                status: 'Proficient',
+                hasReport: true,
+                observationIndicators: [],
+                activityDetail: ''
+            },
+            {
+                category: 'A.2 Language practice',
+                title: 'Zero conditional',
+                status: 'Proficient',
+                observationIndicators: [],
+                activityDetail: ''
+            },
+            {
+                category: 'A.4 Language extension',
+                title: 'Peralatan memasak',
+                status: 'Proficient',
+                observationIndicators: [],
+                activityDetail: ''
+            },
+            {
+                category: 'A.5 Language practice 2',
+                title: 'Kata pembilang',
+                status: 'Proficient',
+                observationIndicators: [],
+                activityDetail: ''
+            },
+            {
+                category: 'A.6 Cross-curricular',
+                title: 'Selera',
+                status: 'Proficient',
+                observationIndicators: [],
+                activityDetail: ''
+            },
+            {
+                category: 'A.3 Culture & pronunciation',
+                title: 'Makanan khas Thailand',
+                status: 'Proficient',
+                observationIndicators: [],
+                activityDetail: ''
+            },
+            {
+                category: 'A.4 Language extension',
+                title: 'Peralatan memasak',
+                status: 'Proficient',
+                observationIndicators: [],
+                activityDetail: ''
             }
         ]
     }

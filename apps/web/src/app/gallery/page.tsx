@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 
 const GALLERY_IMAGES = [
     '/assets/images/child-reading.png',
@@ -12,6 +13,7 @@ const GALLERY_IMAGES = [
 
 export default function GalleryPage() {
     const router = useRouter();
+    const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
     return (
         <div className="flex flex-col min-h-screen bg-[#F7F9FD] pb-[40px]">
@@ -29,14 +31,18 @@ export default function GalleryPage() {
             <div className="p-[20px]">
                 <div className="grid grid-cols-3 gap-[12px]">
                     {GALLERY_IMAGES.map((src, index) => (
-                        <div key={index} className="aspect-square relative rounded-[16px] overflow-hidden bg-gray-200 shadow-sm">
+                        <button
+                            key={index}
+                            onClick={() => setSelectedImage(src)}
+                            className="aspect-square relative rounded-[16px] overflow-hidden bg-gray-200 shadow-sm active:scale-95 transition-transform"
+                        >
                             <Image
                                 src={src}
                                 alt={`Gallery Image ${index + 1}`}
                                 fill
                                 className="object-cover"
                             />
-                        </div>
+                        </button>
                     ))}
                     {/* Add more placeholders to fill grid */}
                     {[...Array(4)].map((_, i) => (
@@ -46,6 +52,37 @@ export default function GalleryPage() {
                     ))}
                 </div>
             </div>
+
+            {/* Image Preview Modal */}
+            {selectedImage && (
+                <div
+                    className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center p-4 backdrop-blur-sm animate-in fade-in duration-200"
+                    onClick={() => setSelectedImage(null)}
+                >
+                    <button
+                        onClick={() => setSelectedImage(null)}
+                        className="absolute top-4 right-4 text-white/80 hover:text-white bg-white/10 p-2 rounded-full backdrop-blur-md transition-colors"
+                    >
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <path d="M18 6L6 18M6 6l12 12" />
+                        </svg>
+                    </button>
+
+                    <div
+                        className="relative w-full max-w-4xl h-full max-h-[80vh] flex items-center justify-center"
+                        onClick={(e) => e.stopPropagation()} // Prevent close when clicking image area
+                    >
+                        <Image
+                            src={selectedImage}
+                            alt="Preview"
+                            fill
+                            className="object-contain"
+                            priority
+                            sizes="100vw"
+                        />
+                    </div>
+                </div>
+            )}
         </div>
     );
 }

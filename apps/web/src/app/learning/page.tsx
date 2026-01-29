@@ -84,7 +84,8 @@ const PACKAGES: Record<string, { id: string; name: string; location: string; ico
 
 const LIAM_JOURNAL = [
     {
-        unit: "Unit D",
+        id: "unit-a-crazy-colour",
+        unit: "Unit A",
         description: "In this unit, students learned about their taste buds and how our tongues interact with flavours. Structure...",
         lessonCompleted: "10",
         finalTest: "85%",
@@ -92,6 +93,7 @@ const LIAM_JOURNAL = [
         dotColor: "bg-[#FF7096]"
     },
     {
+        id: "unit-e",
         unit: "Unit E",
         description: "In this unit, students learned about how historians excavate historical sites to uncover hidden artifacts...",
         lessonCompleted: "5",
@@ -100,6 +102,7 @@ const LIAM_JOURNAL = [
         dotColor: "bg-[#FF7096]"
     },
     {
+        id: "unit-f",
         unit: "Unit F",
         description: "In this unit, students learned about Winter Olympics and explored the unique cultures of Inuit peoples.",
         lessonCompleted: "0",
@@ -415,9 +418,10 @@ export default function LearningPage() {
                         {/* Journal Content Based on Child */}
                         {selectedChildId === 'liam' ? (
                             LIAM_JOURNAL.map((item, index) => (
-                                <div
+                                <Link
                                     key={index}
-                                    className={`${item.status === 'disabled' ? 'bg-[#9BA3AF]' : 'bg-[#3A3968]'} rounded-[12px] p-[16px] text-white flex flex-col gap-[12px] cursor-pointer shadow-md`}
+                                    href={item.status === 'disabled' ? '#' : `/learning/journal/${item.id}`}
+                                    className={`${item.status === 'disabled' ? 'bg-[#9BA3AF] pointer-events-none' : 'bg-[#3A3968]'} rounded-[12px] p-[16px] text-white flex flex-col gap-[12px] cursor-pointer shadow-md active:scale-[0.99] transition-transform`}
                                 >
                                     <div className="flex items-center justify-between">
                                         <div className="flex items-center gap-[8px]">
@@ -442,7 +446,7 @@ export default function LearningPage() {
                                             <p className="font-['Inter'] font-bold text-[18px] text-[#2C313A] mt-auto">{item.finalTest}</p>
                                         </div>
                                     </div>
-                                </div>
+                                </Link>
                             ))
                         ) : selectedChildId === 'dora' ? (
                             // Dora's Journal
