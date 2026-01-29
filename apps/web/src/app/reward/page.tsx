@@ -48,7 +48,7 @@ export default function RewardPage() {
     const router = useRouter();
 
     return (
-        <div className="bg-[#f7f9fd] flex flex-col min-h-screen w-full font-['Inter'] pb-[20px]">
+        <div className="bg-[#f7f9fd] flex flex-col min-h-[100dvh] w-full font-['Inter'] pb-[20px]">
 
             {/* Header & Gradient Background */}
             <div className="relative w-full px-[12px] pt-[12px] pb-[26px] rounded-b-[28px] z-10 bg-[linear-gradient(180deg,#9EA6B2_0%,#6D747F_100%)]">

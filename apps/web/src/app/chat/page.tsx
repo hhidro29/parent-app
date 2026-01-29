@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export default function ChatPage() {
     return (
-        <div className="flex flex-col min-h-screen w-full bg-[#F7F9FD] pb-[100px]">
+        <div className="flex flex-col min-h-[100dvh] w-full bg-[#F7F9FD] pb-[100px]">
             {/* Header Section */}
             <div className="relative w-full shrink-0">
 

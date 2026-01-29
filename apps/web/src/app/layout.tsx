@@ -28,7 +28,7 @@ export default function RootLayout({
   return (
     <html lang="id">
       <body className={`${inter.variable} antialiased font-['Inter']`} suppressHydrationWarning>
-        <div className="bg-[#f3fbfc] flex items-center justify-center min-h-screen w-full">
+        <div className="bg-[#f3fbfc] flex items-center justify-center min-h-[100dvh] w-full">
           {/* Mobile Container - Max 450px */}
           <div className="bg-[#f3fbfc] flex flex-col h-[100dvh] max-w-[450px] overflow-hidden relative w-full shadow-2xl">
             {/* Page Content */}
