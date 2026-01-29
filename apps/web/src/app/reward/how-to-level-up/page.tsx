@@ -41,7 +41,7 @@ export default function HowToLevelUpPage() {
     const router = useRouter();
 
     return (
-        <div className="bg-[#f7f9fd] flex flex-col min-h-screen w-full font-['Inter']">
+        <div className="bg-[#f7f9fd] flex flex-col min-h-[100dvh] w-full font-['Inter']">
             {/* Header */}
             {/* Height: 56px based on design */}
             <div className="sticky top-0 w-full h-[56px] px-[12px] flex items-center justify-between z-50 bg-[#3DB4A8] shadow-sm">
