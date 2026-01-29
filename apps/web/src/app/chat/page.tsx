@@ -50,7 +50,7 @@ export default function ChatPage() {
                     <p className="font-['Inter'] text-[12px] text-[#5E677B] leading-[18px]">
                         <span className="font-bold">Student Advisor - Jakarta Kemang</span>
                         <br />
-                        bisa membantu anda lewat Whatsapp
+                        bisa membantu Anda lewat Whatsapp
                     </p>
                 </div>
 

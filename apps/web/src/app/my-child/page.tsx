@@ -17,7 +17,7 @@ const children = [
         description: "Sekolah Dasar - Kelas 3",
         tier: "silver" as const,
         subscriptionCount: 2,
-        subscriptionDate: "31 Juni 2026",
+        subscriptionDate: "30 Juni 2026",
     },
     {
         id: "dora",
@@ -25,7 +25,7 @@ const children = [
         description: "PAUD - 2 Tahun",
         tier: "gold" as const,
         subscriptionCount: 1,
-        subscriptionDate: "31 Juni 2026",
+        subscriptionDate: "30 Juni 2026",
     },
 ];
 
@@ -137,7 +137,7 @@ export default function MyChildPage() {
                     {/* Promo Section */}
                     <div className="flex flex-col gap-[12px] mt-[4px]">
                         <p className="font-['Inter'] font-bold text-[16px] leading-[20px] text-[#2c313a]">
-                            Paket belajar untuk anak anda
+                            Paket belajar untuk anak Anda
                         </p>
                         <div className="flex gap-[10px] overflow-x-auto pb-[4px] -mx-[12px] px-[12px] scrollbar-hide">
                             <PromoCard src="/assets/images/banner-promo-diskonsd.png" />

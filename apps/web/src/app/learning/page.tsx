@@ -93,7 +93,7 @@ const LIAM_JOURNAL = [
     },
     {
         unit: "Unit E",
-        description: "In this unit, students learned about how historians excavate historical sites to uncover hidden artifacts....",
+        description: "In this unit, students learned about how historians excavate historical sites to uncover hidden artifacts...",
         lessonCompleted: "5",
         finalTest: "-",
         status: "active",
@@ -101,7 +101,7 @@ const LIAM_JOURNAL = [
     },
     {
         unit: "Unit F",
-        description: "In this unit, students learned about Winter Olympics and explored the unique cultures of Inuit peoples wh...",
+        description: "In this unit, students learned about Winter Olympics and explored the unique cultures of Inuit peoples.",
         lessonCompleted: "0",
         finalTest: "-",
         status: "disabled",
@@ -313,7 +313,7 @@ export default function LearningPage() {
             <div className="w-full px-[12px] pb-[12px] bg-white">
                 <div className="flex gap-[12px] w-full">
                     <div className="flex-1 bg-[#F5EDEF] rounded-[12px] p-[12px]">
-                        <p className="font-['Inter'] font-normal text-[12px] text-[#5E677B] mb-[2px]">Lesson Complete</p>
+                        <p className="font-['Inter'] font-normal text-[12px] text-[#5E677B] mb-[2px]">Lesson Completed</p>
                         <p className="font-['Inter'] font-bold text-[14px] text-[#2C313A]">{selectedChild.stats.lessonComplete}</p>
                     </div>
                     <div className="flex-1 bg-[#F5EDEF] rounded-[12px] p-[12px]">

@@ -5,7 +5,7 @@ export const REPORTS_BY_CHILD: Record<string, { id: string; type: string; unit?:
             type: "Class Report",
             unit: "Unit J · Writing Skills",
             title: "Essay Structure",
-            time: "5 Hour ago",
+            time: "5 Hours ago",
             status: "Hadir",
             statusColor: "bg-[#dbf5e8] text-[#2a7650]",
             link: "/learning/report/1"
@@ -25,7 +25,7 @@ export const REPORTS_BY_CHILD: Record<string, { id: string; type: string; unit?:
             type: "Class Report",
             unit: "Unit K · Creative Writing",
             title: "Character Development",
-            time: "2 Week ago",
+            time: "2 Weeks ago",
             status: "Hadir",
             statusColor: "bg-[#dbf5e8] text-[#2a7650]",
             link: "/learning/report/3"
@@ -35,7 +35,7 @@ export const REPORTS_BY_CHILD: Record<string, { id: string; type: string; unit?:
             type: "Class Report",
             unit: "Unit L · Literature Analysis",
             title: "Poetry Techniques",
-            time: "3 Week ago",
+            time: "3 Weeks ago",
             status: "Hadir",
             statusColor: "bg-[#dbf5e8] text-[#2a7650]",
             link: "/learning/report/4"
@@ -44,7 +44,7 @@ export const REPORTS_BY_CHILD: Record<string, { id: string; type: string; unit?:
             id: "p1",
             type: "Teacher Parent Report",
             title: "Liam A. - Learning Report 1",
-            time: "3 Week ago",
+            time: "3 Weeks ago",
             link: "#"
         },
         {
@@ -52,7 +52,7 @@ export const REPORTS_BY_CHILD: Record<string, { id: string; type: string; unit?:
             type: "Class Report",
             unit: "Unit M · Research Skills",
             title: "Citing Sources",
-            time: "4 Week ago",
+            time: "4 Weeks ago",
             status: "Hadir",
             statusColor: "bg-[#dbf5e8] text-[#2a7650]",
             link: "/learning/report/5"
@@ -64,7 +64,7 @@ export const REPORTS_BY_CHILD: Record<string, { id: string; type: string; unit?:
             type: "Class Report",
             unit: "Discovering Me",
             title: "This Is Me!",
-            time: "5 Hour ago",
+            time: "5 Hours ago",
             status: "Hadir",
             statusColor: "bg-[#dbf5e8] text-[#2a7650]",
             link: "/learning/report/1"
@@ -84,7 +84,7 @@ export const REPORTS_BY_CHILD: Record<string, { id: string; type: string; unit?:
             type: "Class Report",
             unit: "Discovering Me",
             title: "I Can Try!",
-            time: "2 Week ago",
+            time: "2 Weeks ago",
             status: "Hadir",
             statusColor: "bg-[#dbf5e8] text-[#2a7650]",
             link: "/learning/report/1"
@@ -94,7 +94,7 @@ export const REPORTS_BY_CHILD: Record<string, { id: string; type: string; unit?:
             type: "Class Report",
             unit: "Discovering Me",
             title: "Little Explorer",
-            time: "3 Week ago",
+            time: "3 Weeks ago",
             status: "Hadir",
             statusColor: "bg-[#dbf5e8] text-[#2a7650]",
             link: "/learning/report/1"
@@ -103,7 +103,7 @@ export const REPORTS_BY_CHILD: Record<string, { id: string; type: string; unit?:
             id: "dp1",
             type: "Teacher Parent Report",
             title: "Dora P. - Learning Report 1",
-            time: "3 Week ago",
+            time: "3 Weeks ago",
             link: "#"
         },
         {
@@ -111,7 +111,7 @@ export const REPORTS_BY_CHILD: Record<string, { id: string; type: string; unit?:
             type: "Class Report",
             unit: "Discovering Me",
             title: "My Choice!",
-            time: "4 Week ago",
+            time: "4 Weeks ago",
             status: "Hadir",
             statusColor: "bg-[#dbf5e8] text-[#2a7650]",
             link: "/learning/report/1"
