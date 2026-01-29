@@ -1,7 +1,9 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { REPORTS_BY_CHILD } from "@/data/reports";
 
 // SVG Paths
 const svgPaths = {
@@ -262,9 +264,21 @@ function PromoCard() {
   );
 }
 
-function ClassReportCard() {
+
+interface ReportData {
+  id: string;
+  type: string;
+  unit?: string;
+  title: string;
+  time: string;
+  status?: string;
+  statusColor?: string;
+  link: string;
+}
+
+function StoryReportCard({ data, childName, schoolName, avatar }: { data: ReportData; childName: string; schoolName: string; avatar: string }) {
   return (
-    <Link href="/learning/report/1" className="bg-white relative rounded-[12px] shrink-0 w-full block">
+    <Link href={data.link} className="bg-white relative rounded-[12px] shrink-0 w-full block">
       <div aria-hidden="true" className="absolute border border-[#cfd3db] border-solid inset-0 pointer-events-none rounded-[12px]" />
       <div className="content-stretch flex flex-col gap-[12px] items-start p-[12px] relative w-full">
         {/* Header with Avatar and Info */}
@@ -272,8 +286,8 @@ function ClassReportCard() {
           {/* Avatar */}
           <div className="relative shrink-0 size-[28px] rounded-full overflow-hidden">
             <Image
-              src="/assets/images/avatar-classreport.png"
-              alt="Class Report Avatar"
+              src={avatar}
+              alt={`${childName} Avatar`}
               fill
               className="object-cover"
             />
@@ -284,15 +298,15 @@ function ClassReportCard() {
             {/* Top row: Name · School | Timestamp */}
             <div className="content-stretch flex items-center justify-between relative shrink-0 w-full">
               <p className="font-['Inter'] font-normal leading-[18px] not-italic text-[12px] text-[#5e677b]">
-                Liam A · English Academy
+                {childName} · {schoolName}
               </p>
               <p className="font-['Inter'] font-normal leading-[18px] not-italic text-[12px] text-[#959dac]">
-                4 hours ago
+                {data.time}
               </p>
             </div>
             {/* Title row */}
             <p className="font-['Inter'] font-bold leading-[22px] not-italic text-[14px] text-black">
-              Liam&apos;s Class Report
+              {childName}&apos;s {data.type}
             </p>
           </div>
         </div>
@@ -301,7 +315,7 @@ function ClassReportCard() {
         <div className="h-[120px] w-full rounded-[8px] overflow-hidden relative">
           <Image
             src="/assets/images/promo-banner-discovering-me.png"
-            alt="Discovering Me - This Is Me!"
+            alt={data.title}
             fill
             className="object-cover"
           />
@@ -310,23 +324,42 @@ function ClassReportCard() {
         {/* Content */}
         <div className="content-stretch flex flex-col gap-[4px] items-start relative shrink-0 w-full">
           <p className="font-['Inter'] font-bold leading-[22px] not-italic relative shrink-0 text-[14px] text-black w-full">
-            Discovering Me - This Is Me!
+            {data.title}
           </p>
-          <p className="font-['Inter'] font-normal leading-[18px] not-italic relative shrink-0 text-[#2c313a] text-[12px] w-full">
-            {`We hope you're having a great day! Here is Little Wonder's update from the classroom:`}
-          </p>
+          {data.unit && (
+            <p className="font-['Inter'] font-normal leading-[18px] not-italic relative shrink-0 text-[#2c313a] text-[12px] w-full">
+              {data.unit}
+            </p>
+          )}
         </div>
 
         {/* CTA Link */}
         <p className="font-['Inter'] font-bold leading-[22px] min-w-full not-italic relative shrink-0 text-[#20a4b0] text-[14px] text-right w-[min-content]">
-          See Session Report
+          See {data.type === 'Class Report' ? 'Session' : 'Report'}
         </p>
       </div>
     </Link>
   );
 }
 
-function AnnouncementCard() {
+const ANNOUNCEMENTS = [
+  {
+    id: 1,
+    time: "4 hours ago",
+    title: "Announcement",
+    content: "Don't forget your water bottles!",
+    link: "#"
+  },
+  {
+    id: 2,
+    time: "1 day ago",
+    title: "Announcement",
+    content: "Parent-Teacher meeting next Friday at 3 PM in the main hall.",
+    link: "#"
+  }
+];
+
+function AnnouncementCard({ data }: { data: typeof ANNOUNCEMENTS[0] }) {
   return (
     <div className="bg-white relative rounded-[12px] shrink-0 w-full">
       <div aria-hidden="true" className="absolute border border-[#cfd3db] border-solid inset-0 pointer-events-none rounded-[12px]" />
@@ -338,93 +371,102 @@ function AnnouncementCard() {
             </svg>
           </div>
           <div className="content-stretch flex flex-[1_0_0] flex-col gap-[4px] items-start min-h-px min-w-px relative">
-            <p className="font-['Inter'] font-normal leading-[normal] not-italic relative shrink-0 text-[12px] text-black">4 hours ago</p>
+            <p className="font-['Inter'] font-normal leading-[normal] not-italic relative shrink-0 text-[12px] text-black">{data.time}</p>
             <div className="content-stretch flex gap-[4px] items-start relative shrink-0 w-full">
-              <p className="flex-[1_0_0] font-['Inter'] font-semibold leading-[18px] min-h-px min-w-px not-italic relative text-[12px] text-black">Announcement</p>
+              <p className="flex-[1_0_0] font-['Inter'] font-semibold leading-[18px] min-h-px min-w-px not-italic relative text-[12px] text-black">{data.title}</p>
             </div>
           </div>
         </div>
-        <p className="font-['Inter'] font-normal leading-[22px] not-italic relative shrink-0 text-[#2c313a] text-[14px] w-full">{`Don't forget your water bottles!`}</p>
+        <p className="font-['Inter'] font-normal leading-[22px] not-italic relative shrink-0 text-[#2c313a] text-[14px] w-full">{data.content}</p>
         <p className="font-['Inter'] font-bold leading-[22px] not-italic relative shrink-0 text-[#20a4b0] text-[14px] text-right w-full">See Detail</p>
       </div>
     </div>
   );
 }
 
-function SessionReportCard() {
-  return (
-    <Link href="/learning/report/2" className="bg-white relative rounded-[12px] shrink-0 w-full block">
-      <div aria-hidden="true" className="absolute border border-[#cfd3db] border-solid inset-0 pointer-events-none rounded-[12px]" />
-      <div className="content-stretch flex flex-col gap-[12px] items-start p-[12px] relative w-full">
-        {/* Header with Avatar and Info */}
-        <div className="content-stretch flex gap-[8px] items-start relative shrink-0 w-full">
-          {/* Avatar */}
-          <div className="relative shrink-0 size-[28px] rounded-full overflow-hidden">
-            <Image
-              src="/assets/images/profile-dora.png"
-              alt="Dora Avatar"
-              fill
-              className="object-cover"
-            />
-          </div>
-
-          {/* Info section */}
-          <div className="content-stretch flex flex-[1_0_0] flex-col gap-[2px] items-start min-h-px min-w-px relative">
-            {/* Top row: Name · School | Timestamp */}
-            <div className="content-stretch flex items-center justify-between relative shrink-0 w-full">
-              <p className="font-['Inter'] font-normal leading-[18px] not-italic text-[12px] text-[#5e677b]">
-                Dora A · English Academy
-              </p>
-              <p className="font-['Inter'] font-normal leading-[18px] not-italic text-[12px] text-[#959dac]">
-                4 hours ago
-              </p>
-            </div>
-            {/* Title row */}
-            <p className="font-['Inter'] font-bold leading-[22px] not-italic text-[14px] text-black">
-              Dora&apos;s Session Report
-            </p>
-          </div>
-        </div>
-
-        {/* Image - height 120px as per design */}
-        <div className="h-[120px] w-full rounded-[8px] overflow-hidden relative">
-          <Image
-            src="/assets/images/promo-banner-discovering-me.png"
-            alt="Discovering Me - This Is Me!"
-            fill
-            className="object-cover"
-          />
-        </div>
-
-        {/* Content */}
-        <div className="content-stretch flex flex-col gap-[4px] items-start relative shrink-0 w-full">
-          <p className="font-['Inter'] font-bold leading-[22px] not-italic relative shrink-0 text-[14px] text-black w-full">
-            Discovering Me - This Is Me!
-          </p>
-          <p className="font-['Inter'] font-normal leading-[18px] not-italic relative shrink-0 text-[#2c313a] text-[12px] w-full">
-            {`We hope you're having a great day! Here is Little Wonder's update from the classroom:`}
-          </p>
-        </div>
-
-        {/* CTA Link */}
-        <p className="font-['Inter'] font-bold leading-[22px] min-w-full not-italic relative shrink-0 text-[#20a4b0] text-[14px] text-right w-[min-content]">
-          See Session Report
-        </p>
-      </div>
-    </Link>
-  );
-}
+const FILTERS = [
+  { id: 'All', label: 'All' },
+  { id: 'Announcement', label: 'Announcement', count: 2 },
+  { id: 'Liam', label: 'Liam' },
+  { id: 'Dora', label: 'Dora' },
+];
 
 function StorySection() {
+  const [filter, setFilter] = useState('All');
+
   return (
     <div className="bg-[#f7f9fd] relative rounded-[20px] shrink-0 w-full">
       <div className="content-stretch flex flex-col gap-[12px] items-start px-[12px] py-[16px] relative w-full">
-        <StoryHeader />
+        {/* Story Header & Filter */}
+        <div className="flex flex-col gap-[12px] w-full">
+          <p className="font-['Inter'] font-bold leading-[24px] text-[#2c313a] text-[16px]">Story</p>
+
+          <div className="flex gap-[8px] overflow-x-auto scrollbar-hide w-full">
+            {FILTERS.map((item) => (
+              <button
+                key={item.id}
+                onClick={() => setFilter(item.id)}
+                className={`flex items-center gap-[6px] px-[16px] py-[8px] rounded-full border transition-colors whitespace-nowrap ${filter === item.id
+                  ? "bg-white border-[#34CE9E] shadow-sm"
+                  : "bg-white border-[#E2E8F0]"
+                  }`}
+              >
+                <span className={`font-['Inter'] font-bold text-[12px] ${filter === item.id ? "text-[#2C313A]" : "text-[#5E677B]"
+                  }`}>
+                  {item.label}
+                </span>
+                {item.count && (
+                  <div className="bg-[#FF4546] text-white text-[10px] font-bold h-[16px] min-w-[16px] px-[4px] rounded-full flex items-center justify-center">
+                    {item.count}
+                  </div>
+                )}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Filtered Content */}
         <div className="content-stretch flex flex-col gap-[12px] items-start relative shrink-0 w-full">
-          <PromoCard />
-          <ClassReportCard />
-          <AnnouncementCard />
-          <SessionReportCard />
+          {(filter === 'All') && <PromoCard />}
+
+          {(filter === 'All' || filter === 'Liam') && (
+            <>
+              {REPORTS_BY_CHILD['liam'].map((report) => (
+                <StoryReportCard
+                  key={report.id}
+                  data={report}
+                  childName="Liam"
+                  schoolName="English Academy"
+                  avatar="/assets/images/profile-liam.png"
+                />
+              ))}
+            </>
+          )}
+
+          {(filter === 'All' || filter === 'Announcement') && (
+            <>
+              {ANNOUNCEMENTS.map(announcement => (
+                <AnnouncementCard key={announcement.id} data={announcement} />
+              ))}
+            </>
+          )}
+
+          {(filter === 'All' || filter === 'Dora') && (
+            <>
+              {REPORTS_BY_CHILD['dora'].map((report) => (
+                <StoryReportCard
+                  key={report.id}
+                  data={report}
+                  childName="Dora"
+                  schoolName="English Academy"
+                  avatar="/assets/images/profile-dora.png"
+                />
+              ))}
+            </>
+          )}
+
+          {/* Empty State (Optional, but good UX if nothing matches) */}
+          {/* In this static mockup, we always have content for implemented filters */}
         </div>
       </div>
     </div>
@@ -434,7 +476,6 @@ function StorySection() {
 export default function HomePage() {
   return (
     <div className="content-stretch flex flex-col items-start w-full">
-
       <HeaderSection />
       <StorySection />
     </div>

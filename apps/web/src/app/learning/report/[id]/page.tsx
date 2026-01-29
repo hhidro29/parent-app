@@ -86,13 +86,13 @@ export default function ClassReportDetailPage() {
                     {/* Unit Info Section */}
                     <div className="flex flex-col gap-[12px] mt-[4px]">
                         <span className="font-['Inter'] text-[12px] text-[#5E677B]">25 November 2025</span>
-                        <h1 className="font-['Inter'] font-bold text-[16px] text-[#2C313A] leading-[1.3]">
-                            Unit A1 : [Placeholder Title]
+                        <h1 className="font-['Inter'] font-bold text-[20px] text-[#2C313A] leading-[1.3]">
+                            Discovering Me - This Is Me!
                         </h1>
 
                         <div className="flex items-center gap-[12px]">
-                            <div className="w-[40px] h-[40px] bg-gray-200 rounded-full shrink-0 overflow-hidden">
-                                {/* Placeholder for teacher avatar if needed, or just gray circle */}
+                            <div className="w-[40px] h-[40px] bg-[#F1F5F9] rounded-full shrink-0 overflow-hidden relative">
+                                {/* Placeholder for teacher avatar */}
                             </div>
                             <div className="flex flex-col">
                                 <span className="text-[10px] text-[#5E677B]">Master Teacher</span>
@@ -107,10 +107,7 @@ export default function ClassReportDetailPage() {
                                 alt="Activity"
                                 fill
                                 className="object-cover"
-                                style={{ backgroundColor: '#e2e8f0' }}
                             />
-                            {/* Fallback if image doesn't exist, using a colored div in style */}
-                            <div className="absolute inset-0 bg-slate-200 -z-10" />
                         </div>
                     </div>
 
@@ -118,7 +115,8 @@ export default function ClassReportDetailPage() {
                     <div className="bg-white rounded-[20px] p-[16px] shadow-sm flex flex-col gap-[16px] mt-[8px]">
                         <div className="flex items-center gap-[12px]">
                             <div className="size-[40px] bg-[#F7F9FD] rounded-full flex items-center justify-center">
-                                {/* Assuming a generic icon or just the circle */}
+                                {/* Activity Icon Placeholder */}
+                                <div className="size-[24px] bg-[#E2E8F0] rounded-full" />
                             </div>
                             <span className="font-['Inter'] font-bold text-[16px] text-[#2C313A]">Activity Detail</span>
                         </div>
@@ -137,12 +135,63 @@ export default function ClassReportDetailPage() {
                                 <h3 className="font-['Inter'] font-bold text-[14px] text-[#2C313A] flex items-center gap-[6px]">
                                     <span>🧠</span> Fokus keterampilan yang dilatih
                                 </h3>
-                                <div className="font-['Inter'] text-[13px] text-[#2C313A] leading-[20px] space-y-2">
-                                    <p>Vocabulary:</p>
-                                    <p>-Animal offsprings: calf, joey, cub, puppy, kitten, caterpillar</p>
-                                    <p>-Human life stages: baby, toddler, kid, teenager, adult</p>
-                                    <p>-Plant life stages: seed, seedling, young plant, adult plant</p>
-                                    <p className="mt-[8px]">Structure: Nouns, pronouns (he, she, it, they, etc.), reflexive pronouns (themselves, herself, myself, etc.)</p>
+
+                                {/* Skill Card 1 */}
+                                <div className="border border-[#BF7AF0] rounded-[16px] p-[16px] flex flex-col gap-[12px] mt-[8px]">
+                                    <div className="flex items-start justify-between">
+                                        <div className="flex flex-col gap-[4px]">
+                                            <span className="font-['Inter'] font-semibold text-[10px] text-[#9747FF]">Social & Emotional Development</span>
+                                            <span className="font-['Inter'] font-bold text-[13px] text-[#2C313A] leading-[1.4]">
+                                                Show awareness of personal identity (own abilities and personal qualities)
+                                            </span>
+                                        </div>
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" className="shrink-0 rotate-90">
+                                            <path d="M6 9l6 6 6-6" stroke="#2C313A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                        </svg>
+                                    </div>
+
+                                    <div className="flex items-center justify-between">
+                                        <span className="font-['Inter'] text-[12px] text-[#5E677B]">Stimulation Result</span>
+                                        <div className="bg-[#FFF4E5] px-[12px] py-[6px] rounded-full flex items-center gap-[6px]">
+                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="#F26D0F">
+                                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                                            </svg>
+                                            <span className="font-['Inter'] font-bold text-[12px] text-[#2C313A]">Proficient</span>
+                                        </div>
+                                    </div>
+
+                                    <p className="font-['Inter'] text-[12px] text-[#2C313A] leading-[18px]">
+                                        Liam showed authenticity today by being herself and honestly expressing her feelings. At the beginning of the day, she felt a little shy and returned to her mum after entering the class. However, it did not take long for Liam to build her confidence, and she became willing and able to participate in all the activities offered to her. We observed Liam engaging with these
+                                    </p>
+                                </div>
+
+                                {/* Skill Card 2 */}
+                                <div className="border border-[#F26D0F] rounded-[16px] p-[16px] flex flex-col gap-[12px] mt-[8px]">
+                                    <div className="flex items-start justify-between">
+                                        <div className="flex flex-col gap-[4px]">
+                                            <span className="font-['Inter'] font-semibold text-[10px] text-[#E85C34]">Authenticity</span>
+                                            <span className="font-['Inter'] font-bold text-[13px] text-[#2C313A] leading-[1.4]">
+                                                Feels content being oneself, Expresses genuine feelings honestly, Respects personal uniqueness and individuality
+                                            </span>
+                                        </div>
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" className="shrink-0 rotate-90">
+                                            <path d="M6 9l6 6 6-6" stroke="#2C313A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                        </svg>
+                                    </div>
+
+                                    <div className="flex items-center justify-between">
+                                        <span className="font-['Inter'] text-[12px] text-[#5E677B]">Stimulation Result</span>
+                                        <div className="bg-[#FFF4E5] px-[12px] py-[6px] rounded-full flex items-center gap-[6px]">
+                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="#F26D0F">
+                                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                                            </svg>
+                                            <span className="font-['Inter'] font-bold text-[12px] text-[#2C313A]">Proficient</span>
+                                        </div>
+                                    </div>
+
+                                    <p className="font-['Inter'] text-[12px] text-[#2C313A] leading-[18px]">
+                                        Liam frequently brings both his hands and feet to his mouth. During floor time, he spends significant moments looking intently at his hands, rotating them, and grasping his toes. He uses his hands to purposefully grasp toys and shake them.
+                                    </p>
                                 </div>
                             </div>
                         </div>

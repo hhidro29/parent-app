@@ -29,18 +29,7 @@ const children = [
 ];
 
 function ChildCard({ child }: { child: typeof children[0] }) {
-    const tierStyles = {
-        silver: {
-            bg: "bg-gradient-to-r from-[#8d94a2] to-[#cbd1de]",
-            label: "Silver Tier",
-        },
-        gold: {
-            bg: "bg-gradient-to-r from-[#d38c2f] to-[#e4cb71]",
-            label: "Gold Tier",
-        },
-    };
 
-    const tier = tierStyles[child.tier];
 
     return (
         <div className="bg-white rounded-[12px] w-full border border-[#cfd3db] overflow-hidden">
@@ -60,18 +49,7 @@ function ChildCard({ child }: { child: typeof children[0] }) {
                     </div>
 
                     {/* Tier Badge */}
-                    <Link
-                        href={`/reward/${child.id}`}
-                        className={`flex items-center gap-[8px] p-[4px] pr-[2px] rounded-[12px] ${tier.bg}`}
-                    >
-                        <div className="relative shrink-0 size-[16px] rounded-full bg-white/30" />
-                        <p className="font-['Inter'] font-bold text-[11px] leading-[16px] text-white">
-                            {tier.label}
-                        </p>
-                        <svg className="size-[16px]" viewBox="0 0 24 24" fill="none">
-                            <path d={svgPaths.chevronRight} fill="white" />
-                        </svg>
-                    </Link>
+
                 </div>
 
                 {/* Subscription Strip */}
